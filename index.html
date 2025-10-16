@@ -27,13 +27,15 @@
             right: 0;
             background: linear-gradient(135deg, rgba(184, 212, 168, 0.9), rgba(168, 200, 152, 0.85));
             backdrop-filter: blur(15px);
-            padding: 15px 3%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0, 77, 0, 0.2);
             border-bottom: 3px solid rgba(0, 77, 0, 0.3);
+            flex-wrap: wrap;
+            gap: 20px;
         }
         
         header::before {
@@ -55,7 +57,6 @@
             border-radius: 50px;
             border: 2px solid rgba(0, 77, 0, 0.2);
             transition: all 0.3s ease;
-            flex-shrink: 0;
         }
         
         .brand:hover {
@@ -69,12 +70,11 @@
         }
         
         .brand-name {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
             color: #004d00;
             text-transform: uppercase;
             letter-spacing: 2px;
-            white-space: nowrap;
         }
         
         .menu-toggle {
@@ -109,9 +109,9 @@
         
         nav {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             align-items: center;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
         }
         
         nav a {
@@ -121,11 +121,10 @@
             font-size: 15px;
             transition: all 0.3s ease;
             position: relative;
-            padding: 10px 16px;
+            padding: 10px 18px;
             border-radius: 25px;
             background: rgba(255, 255, 255, 0.15);
             border: 2px solid transparent;
-            white-space: nowrap;
         }
         
         nav a:hover {
@@ -153,51 +152,61 @@
         }
         
         .content {
-            margin-top: 100px;
+            margin-top: 120px;
             padding: 0;
         }
         
-        .slideshow-container {
-            width: 40%;
-            margin: 40px auto;
-            position: relative;
-        }
-        
+        /* Slideshow */
         .slideshow {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
             position: relative;
+            width: 70%;
+            margin: 0 auto;
+            padding: 40px 0;
+            background: transparent;
         }
         
-        .slide-wrapper {
+        .slide {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
             background: white;
             border-radius: 20px;
-            padding: 15px;
+            padding: 20px;
             box-shadow: 0 10px 40px rgba(0, 77, 0, 0.15);
         }
         
-        .slide-wrapper.active {
+        .slide.active {
             opacity: 1;
+            transform: translateX(0);
         }
         
-        .slide-wrapper img {
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+        
+        .slide.next {
+            transform: translateX(100%);
+        }
+        
+        .slide img {
             width: 100%;
             height: auto;
             display: block;
             border-radius: 12px;
         }
         
-        @media (max-width: 1200px) {
-            nav a {
-                font-size: 14px;
-                padding: 8px 12px;
+        @media (max-width: 768px) {
+            .slideshow {
+                width: 90%;
+                padding: 20px 0;
             }
             
-            .brand-name {
-                font-size: 20px;
+            .slide {
+                top: 20px;
+                padding: 15px;
             }
         }
         
@@ -206,8 +215,12 @@
                 display: flex;
             }
             
-            header {
-                flex-wrap: wrap;
+            .brand-name {
+                font-size: 20px;
+            }
+            
+            .brand img {
+                height: 40px;
             }
             
             nav {
@@ -225,42 +238,21 @@
                 width: 100%;
                 text-align: center;
             }
-            
-            .slideshow-container {
-                width: 90%;
-            }
-            
-            .slideshow {
-                grid-template-columns: 1fr;
-            }
-            
-            .brand {
-                padding: 8px 20px;
-                gap: 12px;
-            }
-            
-            .brand img {
-                height: 40px;
-            }
-            
-            .brand-name {
-                font-size: 18px;
-            }
         }
         
         @media (max-width: 480px) {
             .brand {
-                padding: 6px 15px;
+                padding: 8px 15px;
                 gap: 10px;
-            }
-            
-            .brand img {
-                height: 35px;
             }
             
             .brand-name {
                 font-size: 16px;
                 letter-spacing: 1px;
+            }
+            
+            .brand img {
+                height: 35px;
             }
         }
     </style>
@@ -293,44 +285,33 @@
     <div class="background-container" id="bgContainer"></div>
     
     <div class="content">
-        <div class="slideshow-container">
-            <div class="slideshow" id="slideshow">
-                <!-- Slide pair 1 -->
-                <div class="slide-wrapper active" data-pair="0">
-                    <img src="images/1.png" alt="Slide 1">
-                </div>
-                <div class="slide-wrapper active" data-pair="0">
-                    <img src="images/2.png" alt="Slide 2">
-                </div>
-                
-                <!-- Slide pair 2 -->
-                <div class="slide-wrapper" data-pair="1">
-                    <img src="images/3.png" alt="Slide 3">
-                </div>
-                <div class="slide-wrapper" data-pair="1">
-                    <img src="images/4.png" alt="Slide 4">
-                </div>
-                
-                <!-- Slide pair 3 -->
-                <div class="slide-wrapper" data-pair="2">
-                    <img src="images/5.png" alt="Slide 5">
-                </div>
-                <div class="slide-wrapper" data-pair="2">
-                    <img src="images/6.png" alt="Slide 6">
-                </div>
-                
-                <!-- Slide pair 4 -->
-                <div class="slide-wrapper" data-pair="3">
-                    <img src="images/7.png" alt="Slide 7">
-                </div>
-                <div class="slide-wrapper" data-pair="3">
-                    <img src="images/8.png" alt="Slide 8">
-                </div>
-                
-                <!-- Single slide for odd number -->
-                <div class="slide-wrapper" data-pair="4">
-                    <img src="images/9.png" alt="Slide 9">
-                </div>
+        <div class="slideshow">
+            <div class="slide active">
+                <img src="images/1.png" alt="Slide 1">
+            </div>
+            <div class="slide">
+                <img src="images/2.png" alt="Slide 2">
+            </div>
+            <div class="slide">
+                <img src="images/3.png" alt="Slide 3">
+            </div>
+            <div class="slide">
+                <img src="images/4.png" alt="Slide 4">
+            </div>
+            <div class="slide">
+                <img src="images/5.png" alt="Slide 5">
+            </div>
+            <div class="slide">
+                <img src="images/6.png" alt="Slide 6">
+            </div>
+            <div class="slide">
+                <img src="images/7.png" alt="Slide 7">
+            </div>
+            <div class="slide">
+                <img src="images/8.png" alt="Slide 8">
+            </div>
+            <div class="slide">
+                <img src="images/9.png" alt="Slide 9">
             </div>
         </div>
     </div>
@@ -427,26 +408,28 @@
         animate();
         
         // Slideshow
-        const slides = document.querySelectorAll('.slide-wrapper');
-        let currentPair = 0;
-        const maxPair = 4;
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
         
-        function showPair(pairIndex) {
-            slides.forEach(slide => {
-                if (parseInt(slide.dataset.pair) === pairIndex) {
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active', 'prev', 'next');
+                if (i === index) {
                     slide.classList.add('active');
+                } else if (i < index) {
+                    slide.classList.add('prev');
                 } else {
-                    slide.classList.remove('active');
+                    slide.classList.add('next');
                 }
             });
         }
         
-        function nextPair() {
-            currentPair = (currentPair + 1) % (maxPair + 1);
-            showPair(currentPair);
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
         }
         
-        setInterval(nextPair, 7000);
+        setInterval(nextSlide, 7000);
     </script>
 </body>
 </html>
