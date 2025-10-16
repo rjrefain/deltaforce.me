@@ -51,7 +51,7 @@
                 document.body.appendChild(this.element);
             }
             
-            update() {
+            update(allLogos) {
                 this.x += this.dx;
                 this.y += this.dy;
                 
@@ -66,6 +66,22 @@
                     this.y = this.y <= 0 ? 0 : window.innerHeight - this.size;
                 }
                 
+                // Check collision with other logos
+                allLogos.forEach(other => {
+                    if (other !== this) {
+                        const distance = Math.sqrt(
+                            Math.pow(this.x - other.x, 2) + 
+                            Math.pow(this.y - other.y, 2)
+                        );
+                        
+                        if (distance < this.size) {
+                            // Bounce away from each other
+                            this.dx = -this.dx;
+                            this.dy = -this.dy;
+                        }
+                    }
+                });
+                
                 this.element.style.left = this.x + 'px';
                 this.element.style.top = this.y + 'px';
             }
@@ -78,7 +94,7 @@
         
         // Animation loop
         function animate() {
-            logos.forEach(logo => logo.update());
+            logos.forEach(logo => logo.update(logos));
             requestAnimationFrame(animate);
         }
         
