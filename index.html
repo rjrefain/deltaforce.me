@@ -29,13 +29,15 @@
             background: linear-gradient(135deg, rgba(184, 212, 168, 0.9), rgba(168, 200, 152, 0.85));
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 20px 60px;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0, 77, 0, 0.2);
             border-bottom: 3px solid rgba(0, 77, 0, 0.3);
+            flex-wrap: wrap;
+            gap: 20px;
         }
         
         header::before {
@@ -70,28 +72,62 @@
         }
         
         .logo-container img {
-            height: 65px;
+            height: 50px;
             width: auto;
             filter: drop-shadow(0 2px 5px rgba(0, 77, 0, 0.3));
         }
         
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            border: 2px solid rgba(0, 77, 0, 0.2);
+        }
+        
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background: #004d00;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+        
         nav {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         nav a {
             color: #004d00;
             text-decoration: none;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
             transition: all 0.3s ease;
             position: relative;
-            padding: 12px 20px;
+            padding: 10px 18px;
             border-radius: 25px;
             background: rgba(255, 255, 255, 0.15);
             border: 2px solid transparent;
+            white-space: nowrap;
         }
         
         nav a:hover {
@@ -142,8 +178,74 @@
         
         /* Content area */
         .content {
-            margin-top: 100px;
-            padding: 50px;
+            margin-top: 120px;
+            padding: 20px 5%;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            nav a {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            header {
+                padding: 15px 4%;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px 0 10px 0;
+            }
+            
+            nav.active {
+                display: flex;
+            }
+            
+            nav a {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .logo-container img {
+                height: 40px;
+            }
+            
+            .content {
+                margin-top: 90px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 12px 3%;
+            }
+            
+            .logo-container {
+                padding: 6px 15px;
+            }
+            
+            .logo-container img {
+                height: 35px;
+            }
+            
+            nav a {
+                font-size: 14px;
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -152,7 +254,14 @@
         <div class="logo-container">
             <img src="images/Main logo delta force.png" alt="Delta Force Logo">
         </div>
-        <nav>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <nav id="nav">
             <a href="#home">Home</a>
             <a href="#about">About Us</a>
             <a href="#gallery">Gallery</a>
@@ -171,6 +280,25 @@
     </div>
     
     <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        const navLinks = nav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+        
+        // Floating logos
         const logoPath = 'images/Main logo delta force.png';
         const logoCount = 15;
         const logos = [];
@@ -185,8 +313,15 @@
                 this.size = 56;
                 this.x = Math.random() * (window.innerWidth - this.size);
                 this.y = Math.random() * (window.innerHeight - this.size);
-                this.dx = (Math.random() - 0.5) * 3;
-                this.dy = (Math.random() - 0.5) * 3;
+                
+                // Ensure minimum speed to prevent getting stuck
+                const minSpeed = 1.5;
+                this.dx = (Math.random() - 0.5) * 4;
+                this.dy = (Math.random() - 0.5) * 4;
+                
+                // Ensure minimum velocity
+                if (Math.abs(this.dx) < minSpeed) this.dx = this.dx < 0 ? -minSpeed : minSpeed;
+                if (Math.abs(this.dy) < minSpeed) this.dy = this.dy < 0 ? -minSpeed : minSpeed;
                 
                 this.element.style.left = this.x + 'px';
                 this.element.style.top = this.y + 'px';
@@ -198,28 +333,29 @@
                 this.x += this.dx;
                 this.y += this.dy;
                 
-                // Bounce off edges
+                // Bounce off edges with slight randomization to prevent loops
                 if (this.x <= 0 || this.x >= window.innerWidth - this.size) {
-                    this.dx = -this.dx;
-                    this.x = this.x <= 0 ? 0 : window.innerWidth - this.size;
+                    this.dx = -this.dx * (0.95 + Math.random() * 0.1);
+                    this.x = Math.max(0, Math.min(this.x, window.innerWidth - this.size));
                 }
                 
                 if (this.y <= 0 || this.y >= window.innerHeight - this.size) {
-                    this.dy = -this.dy;
-                    this.y = this.y <= 0 ? 0 : window.innerHeight - this.size;
+                    this.dy = -this.dy * (0.95 + Math.random() * 0.1);
+                    this.y = Math.max(0, Math.min(this.y, window.innerHeight - this.size));
                 }
                 
                 // Check collision with other logos
                 allLogos.forEach(other => {
                     if (other !== this) {
-                        const distance = Math.sqrt(
-                            Math.pow(this.x - other.x, 2) + 
-                            Math.pow(this.y - other.y, 2)
-                        );
+                        const dx = this.x - other.x;
+                        const dy = this.y - other.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
                         
-                        if (distance < this.size) {
-                            this.dx = -this.dx;
-                            this.dy = -this.dy;
+                        if (distance < this.size && distance > 0) {
+                            // Bounce with angle-based velocity change
+                            const angle = Math.atan2(dy, dx);
+                            this.dx = Math.cos(angle) * 2;
+                            this.dy = Math.sin(angle) * 2;
                         }
                     }
                 });
@@ -241,6 +377,14 @@
         }
         
         animate();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            logos.forEach(logo => {
+                logo.x = Math.min(logo.x, window.innerWidth - logo.size);
+                logo.y = Math.min(logo.y, window.innerHeight - logo.size);
+            });
+        });
     </script>
 </body>
 </html>
