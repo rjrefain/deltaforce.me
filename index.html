@@ -315,9 +315,9 @@
                 this.y = Math.random() * (window.innerHeight - this.size);
                 
                 // Ensure minimum speed to prevent getting stuck
-                const minSpeed = 1.5;
-                this.dx = (Math.random() - 0.5) * 4;
-                this.dy = (Math.random() - 0.5) * 4;
+                const minSpeed = 0.75;
+                this.dx = (Math.random() - 0.5) * 2;
+                this.dy = (Math.random() - 0.5) * 2;
                 
                 // Ensure minimum velocity
                 if (Math.abs(this.dx) < minSpeed) this.dx = this.dx < 0 ? -minSpeed : minSpeed;
