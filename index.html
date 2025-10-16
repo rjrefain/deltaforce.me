@@ -159,16 +159,17 @@
         /* Slideshow */
         .slideshow {
             position: relative;
-            width: 100%;
-            padding: 40px 5%;
+            width: 70%;
+            margin: 0 auto;
+            padding: 40px 0;
             background: transparent;
         }
         
         .slide {
             position: absolute;
             top: 40px;
-            left: 5%;
-            right: 5%;
+            left: 0;
+            right: 0;
             opacity: 0;
             transition: opacity 1s ease-in-out, transform 1s ease-in-out;
             background: white;
@@ -199,13 +200,12 @@
         
         @media (max-width: 768px) {
             .slideshow {
-                padding: 20px 3%;
+                width: 90%;
+                padding: 20px 0;
             }
             
             .slide {
                 top: 20px;
-                left: 3%;
-                right: 3%;
                 padding: 15px;
             }
         }
