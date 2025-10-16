@@ -35,6 +35,16 @@
             border-bottom: 3px solid rgba(0, 77, 0, 0.3);
         }
         
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 77, 0, 0.5) 20%, rgba(0, 77, 0, 0.5) 80%, transparent);
+        }
+        
         .brand {
             display: flex;
             align-items: center;
@@ -43,6 +53,11 @@
             background: rgba(255, 255, 255, 0.25);
             border-radius: 50px;
             border: 2px solid rgba(0, 77, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .brand:hover {
+            transform: scale(1.05);
         }
         
         .brand img {
@@ -50,7 +65,7 @@
         }
         
         .brand-name {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
             color: #004d00;
             text-transform: uppercase;
@@ -70,11 +85,13 @@
             padding: 10px 16px;
             border-radius: 25px;
             background: rgba(255, 255, 255, 0.15);
+            border: 2px solid transparent;
             transition: all 0.3s;
         }
         
         nav a:hover {
             background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(0, 77, 0, 0.3);
             transform: translateY(-2px);
         }
         
@@ -93,16 +110,30 @@
             height: 3px;
             background: #004d00;
             border-radius: 2px;
+            transition: 0.3s;
         }
         
-        /* Background logos */
-        .bg-logos {
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+        
+        /* Background */
+        .bg-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+            overflow: hidden;
         }
         
         .bg-logo {
@@ -112,34 +143,39 @@
             opacity: 0.5;
         }
         
-        /* Slideshow */
+        /* Main Content */
         main {
-            margin-top: 120px;
-            padding: 40px 5%;
+            margin-top: 100px;
+            padding: 40px 0;
         }
         
-        .slider {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            max-width: 1400px;
+        .slideshow-container {
+            width: 60%;
             margin: 0 auto;
+            position: relative;
+            min-height: 400px;
         }
         
         .slide {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
             background: white;
             border-radius: 20px;
-            padding: 20px;
+            padding: 8px;
+            border: 3px solid rgba(184, 212, 168, 1);
             box-shadow: 0 10px 40px rgba(0, 77, 0, 0.15);
-            display: none;
         }
         
-        .slide.show {
-            display: block;
+        .slide.active {
+            opacity: 1;
         }
         
         .slide img {
             width: 100%;
+            height: auto;
+            display: block;
             border-radius: 12px;
         }
         
@@ -158,9 +194,10 @@
                 background: rgba(184, 212, 168, 0.95);
                 flex-direction: column;
                 padding: 20px;
+                gap: 10px;
             }
             
-            nav.open {
+            nav.active {
                 display: flex;
             }
             
@@ -169,12 +206,32 @@
                 text-align: center;
             }
             
-            .slider {
-                grid-template-columns: 1fr;
+            .brand-name {
+                font-size: 20px;
+            }
+            
+            .brand img {
+                height: 40px;
+            }
+            
+            .slideshow-container {
+                width: 90%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .brand {
+                padding: 8px 15px;
+                gap: 10px;
             }
             
             .brand-name {
-                font-size: 18px;
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+            
+            .brand img {
+                height: 35px;
             }
         }
     </style>
@@ -186,7 +243,7 @@
             <span class="brand-name">DELTA FORCE</span>
         </div>
         
-        <div class="menu-toggle" onclick="document.getElementById('nav').classList.toggle('open')">
+        <div class="menu-toggle" id="menuToggle">
             <span></span>
             <span></span>
             <span></span>
@@ -204,83 +261,48 @@
         </nav>
     </header>
     
-    <div class="bg-logos" id="bgLogos"></div>
+    <div class="bg-container" id="bgContainer"></div>
     
     <main>
-        <div class="slider">
-            <div class="slide show"><img src="images/1.png"></div>
-            <div class="slide show"><img src="images/2.png"></div>
-            <div class="slide"><img src="images/3.png"></div>
-            <div class="slide"><img src="images/4.png"></div>
-            <div class="slide"><img src="images/5.png"></div>
-            <div class="slide"><img src="images/6.png"></div>
-            <div class="slide"><img src="images/7.png"></div>
-            <div class="slide"><img src="images/8.png"></div>
-            <div class="slide"><img src="images/9.png"></div>
+        <div class="slideshow-container">
+            <div class="slide active"><img src="images/1.png" alt="Slide 1"></div>
+            <div class="slide"><img src="images/2.png" alt="Slide 2"></div>
+            <div class="slide"><img src="images/3.png" alt="Slide 3"></div>
+            <div class="slide"><img src="images/4.png" alt="Slide 4"></div>
+            <div class="slide"><img src="images/5.png" alt="Slide 5"></div>
+            <div class="slide"><img src="images/6.png" alt="Slide 6"></div>
+            <div class="slide"><img src="images/7.png" alt="Slide 7"></div>
+            <div class="slide"><img src="images/8.png" alt="Slide 8"></div>
+            <div class="slide"><img src="images/9.png" alt="Slide 9"></div>
         </div>
     </main>
     
     <script>
-        // Floating logos
-        const container = document.getElementById('bgLogos');
-        const logos = [];
+        // Menu toggle
+        document.getElementById('menuToggle').onclick = function() {
+            this.classList.toggle('active');
+            document.getElementById('nav').classList.toggle('active');
+        };
         
+        // Static background logos
+        const bgContainer = document.getElementById('bgContainer');
         for (let i = 0; i < 15; i++) {
-            const logo = {
-                el: document.createElement('img'),
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4
-            };
-            
-            if (Math.abs(logo.vx) < 0.15) logo.vx = logo.vx > 0 ? 0.15 : -0.15;
-            if (Math.abs(logo.vy) < 0.15) logo.vy = logo.vy > 0 ? 0.15 : -0.15;
-            
-            logo.el.src = 'images/Main logo delta force.png';
-            logo.el.className = 'bg-logo';
-            logo.el.style.left = logo.x + 'px';
-            logo.el.style.top = logo.y + 'px';
-            container.appendChild(logo.el);
-            logos.push(logo);
+            const logo = document.createElement('img');
+            logo.src = 'images/Main logo delta force.png';
+            logo.className = 'bg-logo';
+            logo.style.left = Math.random() * (window.innerWidth - 56) + 'px';
+            logo.style.top = Math.random() * (window.innerHeight - 56) + 'px';
+            bgContainer.appendChild(logo);
         }
-        
-        function updateLogos() {
-            logos.forEach(logo => {
-                logo.x += logo.vx;
-                logo.y += logo.vy;
-                
-                if (logo.x <= 0 || logo.x >= window.innerWidth - 56) {
-                    logo.vx = -logo.vx;
-                    logo.x = Math.max(0, Math.min(logo.x, window.innerWidth - 56));
-                }
-                if (logo.y <= 0 || logo.y >= window.innerHeight - 56) {
-                    logo.vy = -logo.vy;
-                    logo.y = Math.max(0, Math.min(logo.y, window.innerHeight - 56));
-                }
-                
-                logo.el.style.left = logo.x + 'px';
-                logo.el.style.top = logo.y + 'px';
-            });
-            requestAnimationFrame(updateLogos);
-        }
-        updateLogos();
         
         // Slideshow
         const slides = document.querySelectorAll('.slide');
         let current = 0;
         
         setInterval(() => {
-            slides.forEach(s => s.classList.remove('show'));
-            
-            if (window.innerWidth > 768) {
-                slides[current].classList.add('show');
-                slides[current + 1].classList.add('show');
-                current = (current + 2) % slides.length;
-            } else {
-                slides[current].classList.add('show');
-                current = (current + 1) % slides.length;
-            }
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
         }, 7000);
     </script>
 </body>
