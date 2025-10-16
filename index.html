@@ -15,37 +15,24 @@
         
         body {
             background: #f5f5dc;
-            overflow-x: hidden;
-            min-height: 100vh;
             font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
         }
         
+        /* Header */
         header {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
+            width: 100%;
             background: linear-gradient(135deg, rgba(184, 212, 168, 0.9), rgba(168, 200, 152, 0.85));
             backdrop-filter: blur(15px);
-            padding: 15px 5%;
+            padding: 15px 3%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0, 77, 0, 0.2);
             border-bottom: 3px solid rgba(0, 77, 0, 0.3);
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(0, 77, 0, 0.5) 20%, rgba(0, 77, 0, 0.5) 80%, transparent);
         }
         
         .brand {
@@ -56,25 +43,39 @@
             background: rgba(255, 255, 255, 0.25);
             border-radius: 50px;
             border: 2px solid rgba(0, 77, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .brand:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 77, 0, 0.2);
         }
         
         .brand img {
             height: 50px;
-            width: auto;
         }
         
         .brand-name {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
             color: #004d00;
             text-transform: uppercase;
             letter-spacing: 2px;
+        }
+        
+        nav {
+            display: flex;
+            gap: 8px;
+        }
+        
+        nav a {
+            color: #004d00;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 10px 16px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
         
         .menu-toggle {
@@ -92,145 +93,74 @@
             height: 3px;
             background: #004d00;
             border-radius: 2px;
-            transition: all 0.3s ease;
         }
         
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-        
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
-        }
-        
-        nav {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        nav a {
-            color: #004d00;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 10px 18px;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid transparent;
-        }
-        
-        nav a:hover {
-            transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(0, 77, 0, 0.3);
-            box-shadow: 0 5px 15px rgba(0, 77, 0, 0.15);
-        }
-        
-        .background-container {
+        /* Background logos */
+        .bg-logos {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            overflow: hidden;
         }
         
-        .logo {
+        .bg-logo {
             position: absolute;
             width: 56px;
             height: 56px;
             opacity: 0.5;
         }
         
-        .content {
+        /* Slideshow */
+        main {
             margin-top: 120px;
-            padding: 0;
+            padding: 40px 5%;
         }
         
-        /* Slideshow */
-        .slideshow {
-            position: relative;
-            width: 50%;
+        .slider {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 0;
-            background: transparent;
         }
         
         .slide {
-            position: absolute;
-            top: 40px;
-            left: 0;
-            right: 0;
-            opacity: 0;
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
             background: white;
             border-radius: 20px;
             padding: 20px;
             box-shadow: 0 10px 40px rgba(0, 77, 0, 0.15);
+            display: none;
         }
         
-        .slide.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .slide.prev {
-            transform: translateX(-100%);
-        }
-        
-        .slide.next {
-            transform: translateX(100%);
+        .slide.show {
+            display: block;
         }
         
         .slide img {
             width: 100%;
-            height: auto;
-            display: block;
             border-radius: 12px;
         }
         
-        @media (max-width: 768px) {
-            .slideshow {
-                width: 90%;
-                padding: 20px 0;
-            }
-            
-            .slide {
-                top: 20px;
-                padding: 15px;
-            }
-        }
-        
+        /* Responsive */
         @media (max-width: 768px) {
             .menu-toggle {
                 display: flex;
             }
             
-            .brand-name {
-                font-size: 20px;
-            }
-            
-            .brand img {
-                height: 40px;
-            }
-            
             nav {
                 display: none;
-                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(184, 212, 168, 0.95);
                 flex-direction: column;
-                padding: 20px 0 10px 0;
+                padding: 20px;
             }
             
-            nav.active {
+            nav.open {
                 display: flex;
             }
             
@@ -238,21 +168,13 @@
                 width: 100%;
                 text-align: center;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .brand {
-                padding: 8px 15px;
-                gap: 10px;
+            
+            .slider {
+                grid-template-columns: 1fr;
             }
             
             .brand-name {
-                font-size: 16px;
-                letter-spacing: 1px;
-            }
-            
-            .brand img {
-                height: 35px;
+                font-size: 18px;
             }
         }
     </style>
@@ -264,7 +186,7 @@
             <span class="brand-name">DELTA FORCE</span>
         </div>
         
-        <div class="menu-toggle" id="menuToggle">
+        <div class="menu-toggle" onclick="document.getElementById('nav').classList.toggle('open')">
             <span></span>
             <span></span>
             <span></span>
@@ -282,154 +204,84 @@
         </nav>
     </header>
     
-    <div class="background-container" id="bgContainer"></div>
+    <div class="bg-logos" id="bgLogos"></div>
     
-    <div class="content">
-        <div class="slideshow">
-            <div class="slide active">
-                <img src="images/1.png" alt="Slide 1">
-            </div>
-            <div class="slide">
-                <img src="images/2.png" alt="Slide 2">
-            </div>
-            <div class="slide">
-                <img src="images/3.png" alt="Slide 3">
-            </div>
-            <div class="slide">
-                <img src="images/4.png" alt="Slide 4">
-            </div>
-            <div class="slide">
-                <img src="images/5.png" alt="Slide 5">
-            </div>
-            <div class="slide">
-                <img src="images/6.png" alt="Slide 6">
-            </div>
-            <div class="slide">
-                <img src="images/7.png" alt="Slide 7">
-            </div>
-            <div class="slide">
-                <img src="images/8.png" alt="Slide 8">
-            </div>
-            <div class="slide">
-                <img src="images/9.png" alt="Slide 9">
-            </div>
+    <main>
+        <div class="slider">
+            <div class="slide show"><img src="images/1.png"></div>
+            <div class="slide show"><img src="images/2.png"></div>
+            <div class="slide"><img src="images/3.png"></div>
+            <div class="slide"><img src="images/4.png"></div>
+            <div class="slide"><img src="images/5.png"></div>
+            <div class="slide"><img src="images/6.png"></div>
+            <div class="slide"><img src="images/7.png"></div>
+            <div class="slide"><img src="images/8.png"></div>
+            <div class="slide"><img src="images/9.png"></div>
         </div>
-    </div>
+    </main>
     
     <script>
-        // Mobile menu
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.getElementById('nav').classList.toggle('active');
-        });
-        
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('menuToggle').classList.remove('active');
-                document.getElementById('nav').classList.remove('active');
-            });
-        });
-        
         // Floating logos
-        const container = document.getElementById('bgContainer');
+        const container = document.getElementById('bgLogos');
         const logos = [];
         
-        class Logo {
-            constructor() {
-                this.el = document.createElement('img');
-                this.el.src = 'images/Main logo delta force.png';
-                this.el.className = 'logo';
-                
-                this.size = 56;
-                this.x = Math.random() * (window.innerWidth - this.size);
-                this.y = Math.random() * (window.innerHeight - this.size);
-                this.vx = (Math.random() - 0.5) * 0.4;
-                this.vy = (Math.random() - 0.5) * 0.4;
-                
-                if (Math.abs(this.vx) < 0.15) this.vx = this.vx > 0 ? 0.15 : -0.15;
-                if (Math.abs(this.vy) < 0.15) this.vy = this.vy > 0 ? 0.15 : -0.15;
-                
-                this.el.style.left = this.x + 'px';
-                this.el.style.top = this.y + 'px';
-                container.appendChild(this.el);
-            }
-            
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                
-                if (this.x <= 0 || this.x >= window.innerWidth - this.size) {
-                    this.vx = -this.vx;
-                    this.x = Math.max(0, Math.min(this.x, window.innerWidth - this.size));
-                }
-                
-                if (this.y <= 0 || this.y >= window.innerHeight - this.size) {
-                    this.vy = -this.vy;
-                    this.y = Math.max(0, Math.min(this.y, window.innerHeight - this.size));
-                }
-                
-                this.el.style.left = this.x + 'px';
-                this.el.style.top = this.y + 'px';
-            }
-            
-            collide(other) {
-                const dx = this.x - other.x;
-                const dy = this.y - other.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                
-                if (dist < this.size) {
-                    const temp = this.vx;
-                    this.vx = other.vx;
-                    other.vx = temp;
-                    
-                    const temp2 = this.vy;
-                    this.vy = other.vy;
-                    other.vy = temp2;
-                }
-            }
-        }
-        
         for (let i = 0; i < 15; i++) {
-            logos.push(new Logo());
+            const logo = {
+                el: document.createElement('img'),
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4
+            };
+            
+            if (Math.abs(logo.vx) < 0.15) logo.vx = logo.vx > 0 ? 0.15 : -0.15;
+            if (Math.abs(logo.vy) < 0.15) logo.vy = logo.vy > 0 ? 0.15 : -0.15;
+            
+            logo.el.src = 'images/Main logo delta force.png';
+            logo.el.className = 'bg-logo';
+            logo.el.style.left = logo.x + 'px';
+            logo.el.style.top = logo.y + 'px';
+            container.appendChild(logo.el);
+            logos.push(logo);
         }
         
-        function animate() {
-            logos.forEach(logo => logo.update());
-            
-            for (let i = 0; i < logos.length; i++) {
-                for (let j = i + 1; j < logos.length; j++) {
-                    logos[i].collide(logos[j]);
+        function updateLogos() {
+            logos.forEach(logo => {
+                logo.x += logo.vx;
+                logo.y += logo.vy;
+                
+                if (logo.x <= 0 || logo.x >= window.innerWidth - 56) {
+                    logo.vx = -logo.vx;
+                    logo.x = Math.max(0, Math.min(logo.x, window.innerWidth - 56));
                 }
-            }
-            
-            requestAnimationFrame(animate);
+                if (logo.y <= 0 || logo.y >= window.innerHeight - 56) {
+                    logo.vy = -logo.vy;
+                    logo.y = Math.max(0, Math.min(logo.y, window.innerHeight - 56));
+                }
+                
+                logo.el.style.left = logo.x + 'px';
+                logo.el.style.top = logo.y + 'px';
+            });
+            requestAnimationFrame(updateLogos);
         }
-        
-        animate();
+        updateLogos();
         
         // Slideshow
         const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
+        let current = 0;
         
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active', 'prev', 'next');
-                if (i === index) {
-                    slide.classList.add('active');
-                } else if (i < index) {
-                    slide.classList.add('prev');
-                } else {
-                    slide.classList.add('next');
-                }
-            });
-        }
-        
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-        
-        setInterval(nextSlide, 7000);
+        setInterval(() => {
+            slides.forEach(s => s.classList.remove('show'));
+            
+            if (window.innerWidth > 768) {
+                slides[current].classList.add('show');
+                slides[current + 1].classList.add('show');
+                current = (current + 2) % slides.length;
+            } else {
+                slides[current].classList.add('show');
+                current = (current + 1) % slides.length;
+            }
+        }, 7000);
     </script>
 </body>
 </html>
