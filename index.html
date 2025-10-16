@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Maintenance</title>
+    <title>Delta Force</title>
     <style>
         * {
             margin: 0;
@@ -12,57 +12,77 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #333;
-        }
-        
-        .container {
-            text-align: center;
             background: white;
-            padding: 60px 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            margin: 20px;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
         }
         
-        .icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-        
-        p {
-            font-size: 1.2em;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .nonprofit {
-            font-weight: 600;
-            color: #764ba2;
-            margin-top: 30px;
+        .logo {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.5;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">🔧</div>
-        <h1>Under Maintenance</h1>
-        <p>Our website is currently undergoing scheduled maintenance to serve you better.</p>
-        <p>We'll be back online shortly. Thank you for your patience!</p>
-        <p class="nonprofit">Non-Profit Organization</p>
-    </div>
+    <script>
+        const logoPath = 'images/Main logo delta force.png';
+        const logoCount = 15;
+        const logos = [];
+        
+        class Logo {
+            constructor() {
+                this.element = document.createElement('img');
+                this.element.src = logoPath;
+                this.element.className = 'logo';
+                
+                this.size = 80;
+                this.x = Math.random() * (window.innerWidth - this.size);
+                this.y = Math.random() * (window.innerHeight - this.size);
+                this.dx = (Math.random() - 0.5) * 3;
+                this.dy = (Math.random() - 0.5) * 3;
+                
+                this.element.style.left = this.x + 'px';
+                this.element.style.top = this.y + 'px';
+                
+                document.body.appendChild(this.element);
+            }
+            
+            update() {
+                this.x += this.dx;
+                this.y += this.dy;
+                
+                // Bounce off edges
+                if (this.x <= 0 || this.x >= window.innerWidth - this.size) {
+                    this.dx = -this.dx;
+                    this.x = this.x <= 0 ? 0 : window.innerWidth - this.size;
+                }
+                
+                if (this.y <= 0 || this.y >= window.innerHeight - this.size) {
+                    this.dy = -this.dy;
+                    this.y = this.y <= 0 ? 0 : window.innerHeight - this.size;
+                }
+                
+                this.element.style.left = this.x + 'px';
+                this.element.style.top = this.y + 'px';
+            }
+        }
+        
+        // Create logos
+        for (let i = 0; i < logoCount; i++) {
+            logos.push(new Logo());
+        }
+        
+        // Animation loop
+        function animate() {
+            logos.forEach(logo => logo.update());
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+    </script>
 </body>
 </html>
