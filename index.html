@@ -141,18 +141,19 @@ margin-top: 100px;
 padding: 10px 0;
 }
 
-.slideshow-container {
+.slideshow-section {
 width: 60%;
-margin: 0 auto;
+margin: 0 auto 50px;
+}
+
+.slideshow-container {
 position: relative;
-min-height: 400px;
+width: 100%;
 }
 
 .slide {
-position: absolute;
+display: none;
 width: 100%;
-opacity: 0;
-transition: opacity 1s ease-in-out;
 background: white;
 border-radius: 20px;
 padding: 8px;
@@ -161,7 +162,7 @@ box-shadow: 0 10px 40px rgba(0, 77, 0, 0.15);
 }
 
 .slide.active {
-opacity: 1;
+display: block;
 }
 
 .slide img {
@@ -172,11 +173,16 @@ border-radius: 12px;
 }
 
 /* Motto Section */
-.motto-container {
-width: 60%;
-margin: 30px auto 0;
+.motto-section {
+width: 100%;
+padding: 40px 0;
 text-align: center;
-height: 80px;
+background: rgba(184, 212, 168, 0.1);
+}
+
+.motto-container {
+position: relative;
+height: 100px;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -232,8 +238,7 @@ font-size: 20px;
 height: 40px;
 }
 
-.slideshow-container,
-.motto-container {
+.slideshow-section {
 width: 90%;
 }
 
@@ -292,6 +297,7 @@ letter-spacing: 2px;
 <div class="bg-container" id="bgContainer"></div>
 
 <main>
+<section class="slideshow-section">
 <div class="slideshow-container">
 <div class="slide active"><img src="images/1.png" alt="Slide 1"></div>
 <div class="slide"><img src="images/2.png" alt="Slide 2"></div>
@@ -303,12 +309,15 @@ letter-spacing: 2px;
 <div class="slide"><img src="images/8.png" alt="Slide 8"></div>
 <div class="slide"><img src="images/9.png" alt="Slide 9"></div>
 </div>
+</section>
 
+<section class="motto-section">
 <div class="motto-container">
 <div class="motto-word active">Empower</div>
 <div class="motto-word">Uplift</div>
 <div class="motto-word">Transform</div>
 </div>
+</section>
 </main>
 
 <script>
@@ -336,7 +345,7 @@ setInterval(() => {
 mottoWords[currentMotto].classList.remove('active');
 currentMotto = (currentMotto + 1) % mottoWords.length;
 mottoWords[currentMotto].classList.add('active');
-}, 3000); // Each word displays for 3 seconds
+}, 3000);
 </script>
 </body>
 </html>
