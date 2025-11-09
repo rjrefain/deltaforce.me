@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ডেল্টা ফোর্স</title>
 <link rel="icon" type="image/png" href="images/Main logo delta force.png" />
-<link href="50" rel="stylesheet" />
+<link href="51" rel="stylesheet" />
 <style>
 :root{
 --header-h: 72px;
@@ -105,19 +105,56 @@ padding-right:100%;
 100%{transform:translateX(-100%);}
 }
 
-/* Slideshow section - RIGHT ALIGNED */
+/* Slideshow section with grid layout */
 .slideshow-section{
 width:100%;
 padding:60px 3%;
 background:linear-gradient(135deg, #f5f5dc 0%, #e8e8d0 100%);
 }
+.slideshow-wrapper{
+max-width:1200px;
+margin:0 auto;
+display:grid;
+grid-template-columns:1fr 1.5fr;
+gap:30px;
+align-items:start;
+}
+
+/* Left side text box */
+.text-box{
+background:linear-gradient(135deg,var(--green-1),var(--green-2));
+border-radius:16px;
+padding:40px 30px;
+border:3px solid rgba(45,122,79,.5);
+box-shadow:0 10px 40px rgba(0,77,0,.15);
+display:flex;
+align-items:center;
+justify-content:center;
+min-height:300px;
+position:relative;
+overflow:hidden;
+}
+.animated-text{
+font-size:clamp(32px,5vw,48px);
+font-weight:800;
+color:#fff;
+text-align:center;
+text-transform:uppercase;
+letter-spacing:2px;
+position:absolute;
+opacity:0;
+transition:opacity 1s ease-in-out;
+}
+.animated-text.active{
+opacity:1;
+}
+
+/* Right side slideshow */
 .slideshow-container{
-max-width:800px;
-margin-left:auto;
-margin-right:0;
+width:100%;
 }
 .slideshow-container h2{
-text-align:right;
+text-align:center;
 font-size:clamp(24px,4vw,36px);
 color:var(--green-1);
 margin-bottom:30px;
@@ -129,29 +166,57 @@ border-radius:16px;
 padding:8px;
 border:3px solid rgba(45,122,79,.3);
 box-shadow:0 10px 40px rgba(0,77,0,.15);
+position:relative;
+overflow:hidden;
 }
-.slide{display:none}
-.slide.active{display:block}
-.slide img{display:block;width:100%;height:auto;border-radius:10px}
+.slide{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+opacity:0;
+transition:opacity 1.5s ease-in-out;
+}
+.slide.active{
+position:relative;
+opacity:1;
+}
+.slide img{
+display:block;
+width:100%;
+height:auto;
+border-radius:10px;
+}
 
 /* Responsive */
 @media (max-width:1024px){
 .nav-center a{font-size:14px;padding:8px 12px}
+.slideshow-wrapper{
+grid-template-columns:1fr;
+gap:40px;
+}
+.text-box{
+min-height:200px;
+}
 }
 @media (max-width:768px){
 .menu-toggle{display:flex}
 .nav-center,.nav-right{display:none}
 .hero__bg{object-fit:cover;object-position:center}
-.slideshow-container{
-margin-left:auto;
-margin-right:0;
-}
 }
 @media (max-width:480px){
 .brand img{height:35px}
 .brand-name{font-size:16px;letter-spacing:1px}
 .slideshow-section{padding:40px 3%}
 .scroll-text{font-size:14px}
+.text-box{
+padding:30px 20px;
+min-height:180px;
+}
+.animated-text{
+font-size:28px;
+}
 }
 </style>
 </head>
@@ -234,8 +299,17 @@ margin-right:0;
 <div class="scroll-text" id="scrollText" data-bn="এটি একটি অরাজনৈতিক এবং অলাভজনক সংস্থা, আমরা মানবতার সেবা করতে এখানে আছি। একসাথে আমরা দাঁড়াই, বিভক্ত হলে পড়ে যাই।" data-en="This is a Non Political and Non Profit Organization, We are here to serve the humanity. Together we stand divided we fall.">এটি একটি অরাজনৈতিক এবং অলাভজনক সংস্থা, আমরা মানবতার সেবা করতে এখানে আছি। একসাথে আমরা দাঁড়াই, বিভক্ত হলে পড়ে যাই।</div>
 </section>
 
-<!-- Slideshow section - RIGHT ALIGNED -->
+<!-- Slideshow section with text animation -->
 <section class="slideshow-section">
+<div class="slideshow-wrapper">
+<!-- Left: Animated Text Box -->
+<div class="text-box">
+<div class="animated-text active" data-bn="ক্ষমতায়ন" data-en="EMPOWER">ক্ষমতায়ন</div>
+<div class="animated-text" data-bn="উন্নতি" data-en="UPLIFT">উন্নতি</div>
+<div class="animated-text" data-bn="রূপান্তর" data-en="TRANSFORM">রূপান্তর</div>
+</div>
+
+<!-- Right: Image Slideshow -->
 <div class="slideshow-container">
 <h2 data-bn="আমাদের গ্যালারি" data-en="Our Gallery">আমাদের গ্যালারি</h2>
 <div class="slideshow">
@@ -248,6 +322,7 @@ margin-right:0;
 <div class="slide"><img src="images/7.png" alt="Slide 7" /></div>
 <div class="slide"><img src="images/8.png" alt="Slide 8" /></div>
 <div class="slide"><img src="images/9.png" alt="Slide 9" /></div>
+</div>
 </div>
 </div>
 </section>
@@ -277,12 +352,33 @@ mobileClose.addEventListener('click',e=>{e.stopPropagation();closeMobileMenu();}
 mobileMenu.addEventListener('click',e=>{if(e.target===mobileMenu)closeMobileMenu();});
 brandLink.addEventListener('click',()=>{if(mobileMenu.classList.contains('active'))closeMobileMenu();});
 
-// Slideshow
-const slides = document.querySelectorAll('.slide'); let s=0;
-setInterval(()=>{slides[s].classList.remove('active'); s=(s+1)%slides.length; slides[s].classList.add('active');},7000);
+// Image Slideshow with fade effect
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
 
-// Motto pills
-const pills = document.querySelectorAll('.motto-word'); let p=0;
+function showNextSlide(){
+slides[currentSlide].classList.remove('active');
+currentSlide = (currentSlide + 1) % slides.length;
+slides[currentSlide].classList.add('active');
+}
+
+setInterval(showNextSlide, 4000);
+
+// Animated text slideshow
+const animatedTexts = document.querySelectorAll('.animated-text');
+let currentText = 0;
+
+function showNextText(){
+animatedTexts[currentText].classList.remove('active');
+currentText = (currentText + 1) % animatedTexts.length;
+animatedTexts[currentText].classList.add('active');
+}
+
+setInterval(showNextText, 3000);
+
+// Motto pills (keep existing animation)
+const pills = document.querySelectorAll('.motto-word');
+let p=0;
 setInterval(()=>{pills.forEach((el,i)=>el.classList.toggle('active',i===p)); p=(p+1)%pills.length;},3000);
 
 // Mobile menu overscroll
