@@ -1,290 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delta Force</title>
-    <link rel="icon" type="image/png" href="images/Main logo delta force.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #f5f5dc;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
-        
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: linear-gradient(135deg, rgba(184, 212, 168, 0.9), rgba(168, 200, 152, 0.85));
-            backdrop-filter: blur(15px);
-            padding: 15px 3%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 77, 0, 0.2);
-            border-bottom: 3px solid rgba(0, 77, 0, 0.3);
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(0, 77, 0, 0.5) 20%, rgba(0, 77, 0, 0.5) 80%, transparent);
-        }
-        
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 10px 30px;
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 50px;
-            border: 2px solid rgba(0, 77, 0, 0.2);
-            transition: transform 0.3s;
-        }
-        
-        .brand:hover {
-            transform: scale(1.05);
-        }
-        
-        .brand img {
-            height: 50px;
-        }
-        
-        .brand-name {
-            font-size: 26px;
-            font-weight: 700;
-            color: #004d00;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        nav {
-            display: flex;
-            gap: 8px;
-        }
-        
-        nav a {
-            color: #004d00;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            padding: 10px 16px;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid transparent;
-            transition: all 0.3s;
-        }
-        
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(0, 77, 0, 0.3);
-            transform: translateY(-2px);
-        }
-        
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-        }
-        
-        .menu-toggle span {
-            width: 30px;
-            height: 3px;
-            background: #004d00;
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-        
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-        
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
-        }
-        
-        /* Background */
-        .bg-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        
-        /* Main Content */
-        main {
-            margin-top: 100px;
-            padding: 10px 0;
-        }
-        
-        .slideshow-container {
-            width: 60%;
-            margin: 0 auto;
-            position: relative;
-            min-height: 400px;
-        }
-        
-        .slide {
-            position: absolute;
-            width: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            background: white;
-            border-radius: 20px;
-            padding: 8px;
-            border: 3px solid rgba(184, 212, 168, 1);
-            box-shadow: 0 10px 40px rgba(0, 77, 0, 0.15);
-        }
-        
-        .slide.active {
-            opacity: 1;
-        }
-        
-        .slide img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 12px;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-            
-            nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(184, 212, 168, 0.95);
-                flex-direction: column;
-                padding: 20px;
-                gap: 10px;
-            }
-            
-            nav.active {
-                display: flex;
-            }
-            
-            nav a {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .brand-name {
-                font-size: 20px;
-            }
-            
-            .brand img {
-                height: 40px;
-            }
-            
-            .slideshow-container {
-                width: 90%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .brand {
-                padding: 8px 15px;
-                gap: 10px;
-            }
-            
-            .brand-name {
-                font-size: 16px;
-                letter-spacing: 1px;
-            }
-            
-            .brand img {
-                height: 35px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delta Force</title>
+<link rel="icon" type="image/png" href="images/Main logo delta force.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+background: #f5f5dc;
+font-family: 'Poppins', sans-serif;
+overflow-x: hidden;
+}
+
+/* Header */
+header {
+position: fixed;
+top: 0;
+width: 100%;
+background: linear-gradient(135deg, rgba(184, 212, 168, 0.9), rgba(168, 200, 152, 0.85));
+backdrop-filter: blur(15px);
+padding: 15px 3%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 1000;
+box-shadow: 0 4px 20px rgba(0, 77, 0, 0.2);
+border-bottom: 3px solid rgba(0, 77, 0, 0.3);
+}
+
+header::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 2px;
+background: linear-gradient(90deg, transparent, rgba(0, 77, 0, 0.5) 20%, rgba(0, 77, 0, 0.5) 80%, transparent);
+}
+
+.brand {
+display: flex;
+align-items: center;
+gap: 20px;
+padding: 10px 30px;
+background: rgba(255, 255, 255, 0.25);
+border-radius: 50px;
+border: 2px solid rgba(0, 77, 0, 0.2);
+transition: transform 0.3s;
+}
+
+.brand:hover {
+transform: scale(1.05);
+}
+
+.brand img {
+height: 50px;
+}
+
+.brand-name {
+font-size: 26px;
+font-weight: 700;
+color: #004d00;
+text-transform: uppercase;
+letter-spacing: 2px;
+}
+
+nav {
+display: flex;
+gap: 8px;
+}
+
+nav a {
+color: #004d00;
+text-decoration: none;
+font-weight: 600;
+font-size: 15px;
+padding: 10px 16px;
+border-radius: 25px;
+background: rgba(255, 255, 255, 0.15);
+border: 2px solid transparent;
+transition: all 0.3s;
+}
+
+nav a:hover {
+background: rgba(255, 255, 255, 0.3);
+border-color: rgba(0, 77, 0, 0.3);
+transform: translateY(-2px);
+}
+
+.menu-toggle {
+display: none;
+flex-direction: column;
+gap: 5px;
+cursor: pointer;
+padding: 10px;
+background: rgba(255, 255, 255, 0.2);
+border-radius: 8px;
+}
+
+.menu-toggle span {
+width: 30px;
+height: 3px;
+background: #004d00;
+border-radius: 2px;
+transition: 0.3s;
+}
+
+.menu-toggle.active span:nth-child(1) {
+transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Background */
+.bg-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+}
+
+/* Main Content */
+main {
+margin-top: 100px;
+padding: 10px 0;
+}
+
+.slideshow-container {
+width: 60%;
+margin: 0 auto;
+position: relative;
+min-height: 400px;
+}
+
+.slide {
+position: absolute;
+width: 100%;
+opacity: 0;
+transition: opacity 1s ease-in-out;
+background: white;
+border-radius: 20px;
+padding: 8px;
+border: 3px solid rgba(184, 212, 168, 1);
+box-shadow: 0 10px 40px rgba(0, 77, 0, 0.15);
+}
+
+.slide.active {
+opacity: 1;
+}
+
+.slide img {
+width: 100%;
+height: auto;
+display: block;
+border-radius: 12px;
+}
+
+/* Motto Section */
+.motto-container {
+width: 60%;
+margin: 30px auto 0;
+text-align: center;
+height: 80px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.motto-word {
+font-size: 48px;
+font-weight: 700;
+color: #004d00;
+text-transform: uppercase;
+letter-spacing: 3px;
+position: absolute;
+opacity: 0;
+transition: opacity 1s ease-in-out;
+}
+
+.motto-word.active {
+opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+.menu-toggle {
+display: flex;
+}
+
+nav {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+right: 0;
+background: rgba(184, 212, 168, 0.95);
+flex-direction: column;
+padding: 20px;
+gap: 10px;
+}
+
+nav.active {
+display: flex;
+}
+
+nav a {
+width: 100%;
+text-align: center;
+}
+
+.brand-name {
+font-size: 20px;
+}
+
+.brand img {
+height: 40px;
+}
+
+.slideshow-container,
+.motto-container {
+width: 90%;
+}
+
+.motto-word {
+font-size: 36px;
+}
+}
+
+@media (max-width: 480px) {
+.brand {
+padding: 8px 15px;
+gap: 10px;
+}
+
+.brand-name {
+font-size: 16px;
+letter-spacing: 1px;
+}
+
+.brand img {
+height: 35px;
+}
+
+.motto-word {
+font-size: 28px;
+letter-spacing: 2px;
+}
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="brand">
-            <img src="images/Main logo delta force.png" alt="Delta Force">
-            <span class="brand-name">DELTA FORCE</span>
-        </div>
-        
-        <div class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        
-        <nav id="nav">
-            <a href="#home">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#donate">Donate</a>
-            <a href="#location">Location</a>
-            <a href="#track">Track</a>
-            <a href="#apply">Apply</a>
-            <a href="#administration">Administration</a>
-        </nav>
-    </header>
-    
-    <div class="bg-container" id="bgContainer"></div>
-    
-    <main>
-        <div class="slideshow-container">
-            <div class="slide active"><img src="images/1.png" alt="Slide 1"></div>
-            <div class="slide"><img src="images/2.png" alt="Slide 2"></div>
-            <div class="slide"><img src="images/3.png" alt="Slide 3"></div>
-            <div class="slide"><img src="images/4.png" alt="Slide 4"></div>
-            <div class="slide"><img src="images/5.png" alt="Slide 5"></div>
-            <div class="slide"><img src="images/6.png" alt="Slide 6"></div>
-            <div class="slide"><img src="images/7.png" alt="Slide 7"></div>
-            <div class="slide"><img src="images/8.png" alt="Slide 8"></div>
-            <div class="slide"><img src="images/9.png" alt="Slide 9"></div>
-        </div>
-    </main>
-    
-    <script>
-        // Menu toggle
-        document.getElementById('menuToggle').onclick = function() {
-            this.classList.toggle('active');
-            document.getElementById('nav').classList.toggle('active');
-        };
-        
-        // Slideshow
-        const slides = document.querySelectorAll('.slide');
-        let current = 0;
-        
-        setInterval(() => {
-            slides[current].classList.remove('active');
-            current = (current + 1) % slides.length;
-            slides[current].classList.add('active');
-        }, 7000);
-    </script>
+<header>
+<div class="brand">
+<img src="images/Main logo delta force.png" alt="Delta Force">
+<span class="brand-name">DELTA FORCE</span>
+</div>
+
+<div class="menu-toggle" id="menuToggle">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<nav id="nav">
+<a href="#home">Home</a>
+<a href="#about">About Us</a>
+<a href="#gallery">Gallery</a>
+<a href="#donate">Donate</a>
+<a href="#location">Location</a>
+<a href="#track">Track</a>
+<a href="#apply">Apply</a>
+<a href="#administration">Administration</a>
+</nav>
+</header>
+
+<div class="bg-container" id="bgContainer"></div>
+
+<main>
+<div class="slideshow-container">
+<div class="slide active"><img src="images/1.png" alt="Slide 1"></div>
+<div class="slide"><img src="images/2.png" alt="Slide 2"></div>
+<div class="slide"><img src="images/3.png" alt="Slide 3"></div>
+<div class="slide"><img src="images/4.png" alt="Slide 4"></div>
+<div class="slide"><img src="images/5.png" alt="Slide 5"></div>
+<div class="slide"><img src="images/6.png" alt="Slide 6"></div>
+<div class="slide"><img src="images/7.png" alt="Slide 7"></div>
+<div class="slide"><img src="images/8.png" alt="Slide 8"></div>
+<div class="slide"><img src="images/9.png" alt="Slide 9"></div>
+</div>
+
+<div class="motto-container">
+<div class="motto-word active">Empower</div>
+<div class="motto-word">Uplift</div>
+<div class="motto-word">Transform</div>
+</div>
+</main>
+
+<script>
+// Menu toggle
+document.getElementById('menuToggle').onclick = function() {
+this.classList.toggle('active');
+document.getElementById('nav').classList.toggle('active');
+};
+
+// Slideshow
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+setInterval(() => {
+slides[current].classList.remove('active');
+current = (current + 1) % slides.length;
+slides[current].classList.add('active');
+}, 7000);
+
+// Motto animation
+const mottoWords = document.querySelectorAll('.motto-word');
+let currentMotto = 0;
+
+setInterval(() => {
+mottoWords[currentMotto].classList.remove('active');
+currentMotto = (currentMotto + 1) % mottoWords.length;
+mottoWords[currentMotto].classList.add('active');
+}, 3000); // Each word displays for 3 seconds
+</script>
 </body>
 </html>
