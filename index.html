@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ডেল্টা ফোর্স</title>
 <link rel="icon" type="image/png" href="images/Main logo delta force.png" />
-<link href="51" rel="stylesheet" />
+<link href="52" rel="stylesheet" />
 <style>
 :root{
 --header-h: 72px;
@@ -105,7 +105,7 @@ padding-right:100%;
 100%{transform:translateX(-100%);}
 }
 
-/* Slideshow section with grid layout */
+/* Slideshow section with proper alignment */
 .slideshow-section{
 width:100%;
 padding:60px 3%;
@@ -115,22 +115,22 @@ background:linear-gradient(135deg, #f5f5dc 0%, #e8e8d0 100%);
 max-width:1200px;
 margin:0 auto;
 display:grid;
-grid-template-columns:1fr 1.5fr;
-gap:30px;
-align-items:start;
+grid-template-columns:0.9fr 1.5fr;
+gap:40px;
+align-items:center;
 }
 
 /* Left side text box */
 .text-box{
 background:linear-gradient(135deg,var(--green-1),var(--green-2));
 border-radius:16px;
-padding:40px 30px;
+padding:60px 40px;
 border:3px solid rgba(45,122,79,.5);
 box-shadow:0 10px 40px rgba(0,77,0,.15);
 display:flex;
 align-items:center;
 justify-content:center;
-min-height:300px;
+aspect-ratio:1/0.7;
 position:relative;
 overflow:hidden;
 }
@@ -197,7 +197,9 @@ grid-template-columns:1fr;
 gap:40px;
 }
 .text-box{
-min-height:200px;
+aspect-ratio:auto;
+padding:50px 30px;
+min-height:250px;
 }
 }
 @media (max-width:768px){
@@ -211,8 +213,8 @@ min-height:200px;
 .slideshow-section{padding:40px 3%}
 .scroll-text{font-size:14px}
 .text-box{
-padding:30px 20px;
-min-height:180px;
+padding:40px 25px;
+min-height:200px;
 }
 .animated-text{
 font-size:28px;
@@ -299,7 +301,7 @@ font-size:28px;
 <div class="scroll-text" id="scrollText" data-bn="এটি একটি অরাজনৈতিক এবং অলাভজনক সংস্থা, আমরা মানবতার সেবা করতে এখানে আছি। একসাথে আমরা দাঁড়াই, বিভক্ত হলে পড়ে যাই।" data-en="This is a Non Political and Non Profit Organization, We are here to serve the humanity. Together we stand divided we fall.">এটি একটি অরাজনৈতিক এবং অলাভজনক সংস্থা, আমরা মানবতার সেবা করতে এখানে আছি। একসাথে আমরা দাঁড়াই, বিভক্ত হলে পড়ে যাই।</div>
 </section>
 
-<!-- Slideshow section with text animation -->
+<!-- Slideshow section with proper alignment -->
 <section class="slideshow-section">
 <div class="slideshow-wrapper">
 <!-- Left: Animated Text Box -->
@@ -376,7 +378,7 @@ animatedTexts[currentText].classList.add('active');
 
 setInterval(showNextText, 3000);
 
-// Motto pills (keep existing animation)
+// Motto pills
 const pills = document.querySelectorAll('.motto-word');
 let p=0;
 setInterval(()=>{pills.forEach((el,i)=>el.classList.toggle('active',i===p)); p=(p+1)%pills.length;},3000);
