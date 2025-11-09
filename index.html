@@ -167,6 +167,72 @@ opacity: 0;
 transform: rotate(-45deg) translate(8px, -8px);
 }
 
+/* Mobile Menu Overlay */
+.mobile-menu {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(135deg, #2d7a4f, #1a5c38);
+z-index: 999;
+padding: 80px 20px 20px;
+overflow-y: auto;
+}
+
+.mobile-menu.active {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 15px;
+}
+
+.mobile-menu a,
+.mobile-menu .donate-btn {
+width: 100%;
+max-width: 350px;
+text-align: center;
+color: #ffffff;
+text-decoration: none;
+font-weight: 600;
+font-size: 16px;
+padding: 15px;
+border-radius: 8px;
+background: rgba(255, 255, 255, 0.15);
+transition: all 0.3s;
+}
+
+.mobile-menu a:hover {
+background: rgba(255, 255, 255, 0.25);
+}
+
+.mobile-menu .lang-switcher {
+margin-top: 10px;
+}
+
+.mobile-close {
+position: absolute;
+top: 20px;
+right: 20px;
+font-size: 32px;
+color: white;
+background: rgba(255, 255, 255, 0.2);
+width: 45px;
+height: 45px;
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.mobile-close:hover {
+background: rgba(255, 255, 255, 0.3);
+transform: rotate(90deg);
+}
+
 /* Background */
 .bg-container {
 position: fixed;
@@ -258,43 +324,9 @@ padding: 8px 12px;
 display: flex;
 }
 
-.nav-center {
-display: none;
-position: absolute;
-top: 100%;
-left: 0;
-right: 0;
-background: linear-gradient(135deg, #2d7a4f, #1a5c38);
-flex-direction: column;
-padding: 20px;
-gap: 10px;
-margin: 0;
-}
-
-.nav-center.active {
-display: flex;
-}
-
-.nav-center a {
-width: 100%;
-text-align: center;
-}
-
+.nav-center,
 .nav-right {
 display: none;
-position: absolute;
-top: 100%;
-left: 0;
-right: 0;
-background: linear-gradient(135deg, #2d7a4f, #1a5c38);
-flex-direction: column;
-padding: 20px;
-gap: 10px;
-margin-top: 0;
-}
-
-.nav-right.active {
-display: flex;
 }
 
 .brand-name {
@@ -353,7 +385,6 @@ letter-spacing: 2px;
 <a href="#home" data-bn="হোম" data-en="Home">হোম</a>
 <a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</a>
 <a href="#gallery" data-bn="গ্যালারি" data-en="Gallery">গ্যালারি</a>
-<a href="#donate" data-bn="দান করুন" data-en="Donate">দান করুন</a>
 <a href="#location" data-bn="অবস্থান" data-en="Location">অবস্থান</a>
 <a href="#track" data-bn="ট্র্যাক" data-en="Track">ট্র্যাক</a>
 <a href="#apply" data-bn="আবেদন করুন" data-en="Apply">আবেদন করুন</a>
@@ -368,6 +399,23 @@ letter-spacing: 2px;
 <button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
 </div>
 </header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-close" id="mobileClose">×</div>
+<div class="lang-switcher">
+<button class="lang-btn active" onclick="switchLanguage('bn')">বাং</button>
+<button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+</div>
+<button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
+<a href="#home" data-bn="হোম" data-en="Home" onclick="closeMobileMenu()">হোম</a>
+<a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us" onclick="closeMobileMenu()">আমাদের সম্পর্কে</a>
+<a href="#gallery" data-bn="গ্যালারি" data-en="Gallery" onclick="closeMobileMenu()">গ্যালারি</a>
+<a href="#location" data-bn="অবস্থান" data-en="Location" onclick="closeMobileMenu()">অবস্থান</a>
+<a href="#track" data-bn="ট্র্যাক" data-en="Track" onclick="closeMobileMenu()">ট্র্যাক</a>
+<a href="#apply" data-bn="আবেদন করুন" data-en="Apply" onclick="closeMobileMenu()">আবেদন করুন</a>
+<a href="#administration" data-bn="প্রশাসন" data-en="Administration" onclick="closeMobileMenu()">প্রশাসন</a>
+</div>
 
 <div class="bg-container" id="bgContainer"></div>
 
@@ -402,9 +450,18 @@ let currentLang = 'bn';
 // Menu toggle for mobile
 document.getElementById('menuToggle').onclick = function() {
 this.classList.toggle('active');
-document.getElementById('navCenter').classList.toggle('active');
-document.getElementById('navRight').classList.toggle('active');
+document.getElementById('mobileMenu').classList.add('active');
+document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
 };
+
+// Close mobile menu
+document.getElementById('mobileClose').onclick = closeMobileMenu;
+
+function closeMobileMenu() {
+document.getElementById('menuToggle').classList.remove('active');
+document.getElementById('mobileMenu').classList.remove('active');
+document.body.style.overflow = ''; // Restore scrolling
+}
 
 // Language switcher
 function switchLanguage(lang) {
@@ -419,8 +476,10 @@ element.textContent = element.getAttribute('data-' + lang);
 // Update active state on language buttons
 document.querySelectorAll('.lang-btn').forEach(btn => {
 btn.classList.remove('active');
+if ((lang === 'bn' && btn.textContent === 'বাং') || (lang === 'en' && btn.textContent === 'EN')) {
+btn.classList.add('active');
+}
 });
-event.target.classList.add('active');
 
 // Update page title
 document.title = lang === 'bn' ? 'ডেল্টা ফোর্স' : 'Delta Force';
