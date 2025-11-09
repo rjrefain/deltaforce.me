@@ -469,8 +469,7 @@ document.body.style.overflow = 'hidden';
 };
 
 // Close mobile menu
-document.getElementById('mobileClose').onclick = closeMobileMenu;
-
+document.getElementById('mobileClose').addEventListener('click', closeMobileMenu);
 function closeMobileMenu() {
 document.getElementById('menuToggle').classList.remove('active');
 document.getElementById('mobileMenu').classList.remove('active');
