@@ -180,6 +180,8 @@
 			z-index: 2000; /* above header */
 			padding: 80px 20px 20px;
 			overflow-y: auto;
+			overscroll-behavior: contain; /* prevent background scroll */
+			-webkit-overflow-scrolling: touch; /* smooth iOS scroll */
 		}
 
 		.mobile-menu.active {
@@ -187,6 +189,20 @@
 			flex-direction: column;
 			align-items: center;
 			gap: 15px;
+		}
+
+		/* Inner content wrapper to apply bounce transform */
+		.mobile-content {
+			width: 100%;
+			max-width: 480px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 15px;
+			transform: translateY(0);
+			transition: transform 0.2s ease-out;
+			will-change: transform;
+			padding-bottom: 28px; /* extra bottom padding under the last item */
 		}
 
 		.mobile-menu a {
@@ -423,20 +439,23 @@
 	<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
 		<div class="mobile-close" id="mobileClose" aria-label="Close menu" role="button">×</div>
 
-		<div class="lang-switcher">
-			<button class="lang-btn active" data-lang="bn">বাং</button>
-			<button class="lang-btn" data-lang="en">EN</button>
+		<!-- Inner content wrapper for bounce effect -->
+		<div class="mobile-content" id="mobileContent">
+			<div class="lang-switcher">
+				<button class="lang-btn active" data-lang="bn">বাং</button>
+				<button class="lang-btn" data-lang="en">EN</button>
+			</div>
+
+			<button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
+
+			<a href="#home" data-bn="হোম" data-en="Home">হোম</a>
+			<a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</a>
+			<a href="#gallery" data-bn="গ্যালারি" data-en="Gallery">গ্যালারি</a>
+			<a href="#location" data-bn="অবস্থান" data-en="Location">অবস্থান</a>
+			<a href="#track" data-bn="ট্র্যাক" data-en="Track">тр্যাক</a>
+			<a href="#apply" data-bn="আবেদন করুন" data-en="Apply">আবেদন করুন</a>
+			<a href="#administration" data-bn="প্রশাসন" data-en="Administration">প্রশাসন</a>
 		</div>
-
-		<button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
-
-		<a href="#home" data-bn="হোম" data-en="Home">হোম</a>
-		<a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</a>
-		<a href="#gallery" data-bn="গ্যালারি" data-en="Gallery">গ্যালারি</a>
-		<a href="#location" data-bn="অবস্থান" data-en="Location">অবস্থান</a>
-		<a href="#track" data-bn="ট্র্যাক" data-en="Track">ট্র্যাক</a>
-		<a href="#apply" data-bn="আবেদন করুন" data-en="Apply">আবেদন করুন</a>
-		<a href="#administration" data-bn="প্রশাসন" data-en="Administration">প্রশাসন</a>
 	</div>
 
 	<div class="bg-container" id="bgContainer"></div>
@@ -474,6 +493,7 @@
 		const mobileMenu = document.getElementById('mobileMenu');
 		const mobileClose = document.getElementById('mobileClose');
 		const brandLink = document.getElementById('brandLink');
+		const mobileContent = document.getElementById('mobileContent');
 
 		// Helpers
 		function openMobileMenu() {
@@ -489,6 +509,8 @@
 			mobileMenu.classList.remove('active');
 			mobileMenu.setAttribute('aria-hidden', 'true');
 			menuToggle.setAttribute('aria-expanded', 'false');
+			mobileContent.style.transition = 'transform 0.2s ease-out';
+			mobileContent.style.transform = 'translateY(0)';
 			document.body.style.overflow = 'auto';
 		}
 
@@ -507,7 +529,7 @@
 			closeMobileMenu();
 		});
 
-		// Close when clicking outside inner content (backdrop)
+		// Close when clicking backdrop (outside content)
 		mobileMenu.addEventListener('click', function (e) {
 			if (e.target === mobileMenu) {
 				closeMobileMenu();
@@ -516,7 +538,6 @@
 
 		// Close menu and go to default page when clicking logo
 		brandLink.addEventListener('click', function () {
-			// Close if open; navigation to href proceeds normally
 			if (mobileMenu.classList.contains('active')) {
 				closeMobileMenu();
 			}
@@ -570,6 +591,55 @@
 			currentMotto = (currentMotto + 1) % mottoWords.length;
 			mottoWords[currentMotto].classList.add('active');
 		}, 3000);
+
+		/* Mobile bottom-bounce + close on release when overscrolling past bottom */
+		let touchStartY = 0;
+		let isAtBottom = false;
+		let pullingDown = false;
+
+		mobileMenu.addEventListener('touchstart', (e) => {
+			if (!mobileMenu.classList.contains('active')) return;
+			if (!e.touches || !e.touches.length) return;
+
+			touchStartY = e.touches[0].clientY;
+			isAtBottom = (mobileMenu.scrollTop + mobileMenu.clientHeight >= mobileMenu.scrollHeight - 1);
+			pullingDown = false;
+			mobileContent.style.transition = 'none';
+		}, { passive: true });
+
+		mobileMenu.addEventListener('touchmove', (e) => {
+			if (!mobileMenu.classList.contains('active')) return;
+			if (!e.touches || !e.touches.length) return;
+
+			const currentY = e.touches[0].clientY;
+			const deltaY = currentY - touchStartY;
+
+			// User is trying to scroll further down while already at bottom
+			if (isAtBottom && deltaY < 0) {
+				pullingDown = true;
+				// Gentle pull up (translate content up a bit)
+				const maxPull = 40; // px
+				const translate = Math.max(-maxPull, deltaY / 3); // soften
+				mobileContent.style.transform = `translateY(${translate}px)`;
+			} else {
+				// Normal scroll
+				pullingDown = false;
+				mobileContent.style.transform = 'translateY(0)';
+			}
+		}, { passive: true });
+
+		mobileMenu.addEventListener('touchend', () => {
+			if (!mobileMenu.classList.contains('active')) return;
+
+			// If user pulled past bottom and released, close menu (fall down)
+			if (pullingDown) {
+				closeMobileMenu();
+			} else {
+				// Reset transform
+				mobileContent.style.transition = 'transform 0.2s ease-out';
+				mobileContent.style.transform = 'translateY(0)';
+			}
+		});
 	</script>
 </body>
 </html>
