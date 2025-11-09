@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Delta Force</title>
+<title>ডেল্টা ফোর্স</title>
 <link rel="icon" type="image/png" href="images/Main logo delta force.png">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * {
 margin: 0;
@@ -15,7 +15,7 @@ box-sizing: border-box;
 
 body {
 background: #f5f5dc;
-font-family: 'Poppins', sans-serif;
+font-family: 'Poppins', 'Hind Siliguri', sans-serif;
 overflow-x: hidden;
 }
 
@@ -24,75 +24,117 @@ header {
 position: fixed;
 top: 0;
 width: 100%;
-background: linear-gradient(135deg, rgba(184, 212, 168, 0.9), rgba(168, 200, 152, 0.85));
-backdrop-filter: blur(15px);
-padding: 15px 3%;
+background: linear-gradient(135deg, #2d7a4f, #1a5c38);
+padding: 12px 3%;
 display: flex;
 justify-content: space-between;
 align-items: center;
 z-index: 1000;
-box-shadow: 0 4px 20px rgba(0, 77, 0, 0.2);
-border-bottom: 3px solid rgba(0, 77, 0, 0.3);
-}
-
-header::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-height: 2px;
-background: linear-gradient(90deg, transparent, rgba(0, 77, 0, 0.5) 20%, rgba(0, 77, 0, 0.5) 80%, transparent);
+box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
 }
 
 .brand {
 display: flex;
 align-items: center;
-gap: 20px;
-padding: 10px 30px;
-background: rgba(255, 255, 255, 0.25);
-border-radius: 50px;
-border: 2px solid rgba(0, 77, 0, 0.2);
+gap: 15px;
+padding: 8px 20px;
+background: rgba(255, 255, 255, 0.15);
+border-radius: 8px;
 transition: transform 0.3s;
 }
 
 .brand:hover {
-transform: scale(1.05);
+transform: scale(1.03);
 }
 
 .brand img {
-height: 50px;
+height: 45px;
 }
 
 .brand-name {
-font-size: 26px;
+font-size: 22px;
 font-weight: 700;
-color: #004d00;
+color: #ffffff;
 text-transform: uppercase;
-letter-spacing: 2px;
+letter-spacing: 1.5px;
 }
 
-nav {
+.nav-center {
 display: flex;
-gap: 8px;
+gap: 5px;
+flex: 1;
+justify-content: center;
+margin: 0 20px;
 }
 
-nav a {
-color: #004d00;
+.nav-center a {
+color: #ffffff;
 text-decoration: none;
 font-weight: 600;
 font-size: 15px;
-padding: 10px 16px;
-border-radius: 25px;
-background: rgba(255, 255, 255, 0.15);
-border: 2px solid transparent;
+padding: 10px 18px;
+border-radius: 6px;
+background: rgba(255, 255, 255, 0.1);
 transition: all 0.3s;
+white-space: nowrap;
 }
 
-nav a:hover {
-background: rgba(255, 255, 255, 0.3);
-border-color: rgba(0, 77, 0, 0.3);
+.nav-center a:hover {
+background: rgba(255, 255, 255, 0.25);
 transform: translateY(-2px);
+}
+
+.nav-right {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.lang-switcher {
+display: flex;
+gap: 5px;
+background: rgba(255, 255, 255, 0.15);
+padding: 5px;
+border-radius: 8px;
+}
+
+.lang-btn {
+background: transparent;
+border: none;
+color: #ffffff;
+padding: 8px 15px;
+border-radius: 5px;
+cursor: pointer;
+font-weight: 600;
+font-size: 14px;
+transition: all 0.3s;
+font-family: 'Hind Siliguri', sans-serif;
+}
+
+.lang-btn.active {
+background: rgba(255, 255, 255, 0.3);
+}
+
+.lang-btn:hover {
+background: rgba(255, 255, 255, 0.2);
+}
+
+.donate-btn {
+background: linear-gradient(135deg, #4CAF50, #45a049);
+color: white;
+border: none;
+padding: 10px 25px;
+border-radius: 8px;
+font-weight: 600;
+font-size: 15px;
+cursor: pointer;
+transition: all 0.3s;
+box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+.donate-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
 }
 
 .menu-toggle {
@@ -108,7 +150,7 @@ border-radius: 8px;
 .menu-toggle span {
 width: 30px;
 height: 3px;
-background: #004d00;
+background: #ffffff;
 border-radius: 2px;
 transition: 0.3s;
 }
@@ -157,7 +199,7 @@ width: 100%;
 background: white;
 border-radius: 20px;
 padding: 8px;
-border: 3px solid rgba(184, 212, 168, 1);
+border: 3px solid rgba(45, 122, 79, 0.3);
 box-shadow: 0 10px 40px rgba(0, 77, 0, 0.15);
 }
 
@@ -177,7 +219,7 @@ border-radius: 12px;
 width: 100%;
 padding: 40px 0;
 text-align: center;
-background: rgba(184, 212, 168, 0.1);
+background: rgba(45, 122, 79, 0.05);
 }
 
 .motto-container {
@@ -191,7 +233,7 @@ justify-content: center;
 .motto-word {
 font-size: 48px;
 font-weight: 700;
-color: #004d00;
+color: #2d7a4f;
 text-transform: uppercase;
 letter-spacing: 3px;
 position: absolute;
@@ -204,34 +246,59 @@ opacity: 1;
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+.nav-center a {
+font-size: 14px;
+padding: 8px 12px;
+}
+}
+
 @media (max-width: 768px) {
 .menu-toggle {
 display: flex;
 }
 
-nav {
+.nav-center {
 display: none;
 position: absolute;
 top: 100%;
 left: 0;
 right: 0;
-background: rgba(184, 212, 168, 0.95);
+background: linear-gradient(135deg, #2d7a4f, #1a5c38);
 flex-direction: column;
 padding: 20px;
 gap: 10px;
+margin: 0;
 }
 
-nav.active {
+.nav-center.active {
 display: flex;
 }
 
-nav a {
+.nav-center a {
 width: 100%;
 text-align: center;
 }
 
+.nav-right {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+right: 0;
+background: linear-gradient(135deg, #2d7a4f, #1a5c38);
+flex-direction: column;
+padding: 20px;
+gap: 10px;
+margin-top: 0;
+}
+
+.nav-right.active {
+display: flex;
+}
+
 .brand-name {
-font-size: 20px;
+font-size: 18px;
 }
 
 .brand img {
@@ -273,7 +340,7 @@ letter-spacing: 2px;
 <header>
 <div class="brand">
 <img src="images/Main logo delta force.png" alt="Delta Force">
-<span class="brand-name">DELTA FORCE</span>
+<span class="brand-name" data-bn="ডেল্টা ফোর্স" data-en="DELTA FORCE">ডেল্টা ফোর্স</span>
 </div>
 
 <div class="menu-toggle" id="menuToggle">
@@ -282,16 +349,24 @@ letter-spacing: 2px;
 <span></span>
 </div>
 
-<nav id="nav">
-<a href="#home">Home</a>
-<a href="#about">About Us</a>
-<a href="#gallery">Gallery</a>
-<a href="#donate">Donate</a>
-<a href="#location">Location</a>
-<a href="#track">Track</a>
-<a href="#apply">Apply</a>
-<a href="#administration">Administration</a>
+<nav class="nav-center" id="navCenter">
+<a href="#home" data-bn="হোম" data-en="Home">হোম</a>
+<a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</a>
+<a href="#gallery" data-bn="গ্যালারি" data-en="Gallery">গ্যালারি</a>
+<a href="#donate" data-bn="দান করুন" data-en="Donate">দান করুন</a>
+<a href="#location" data-bn="অবস্থান" data-en="Location">অবস্থান</a>
+<a href="#track" data-bn="ট্র্যাক" data-en="Track">ট্র্যাক</a>
+<a href="#apply" data-bn="আবেদন করুন" data-en="Apply">আবেদন করুন</a>
+<a href="#administration" data-bn="প্রশাসন" data-en="Administration">প্রশাসন</a>
 </nav>
+
+<div class="nav-right" id="navRight">
+<div class="lang-switcher">
+<button class="lang-btn active" onclick="switchLanguage('bn')">বাং</button>
+<button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+</div>
+<button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
+</div>
 </header>
 
 <div class="bg-container" id="bgContainer"></div>
@@ -313,19 +388,43 @@ letter-spacing: 2px;
 
 <section class="motto-section">
 <div class="motto-container">
-<div class="motto-word active">Empower</div>
-<div class="motto-word">Uplift</div>
-<div class="motto-word">Transform</div>
+<div class="motto-word active" data-bn="ক্ষমতায়ন" data-en="Empower">ক্ষমতায়ন</div>
+<div class="motto-word" data-bn="উন্নতি" data-en="Uplift">উন্নতি</div>
+<div class="motto-word" data-bn="রূপান্তর" data-en="Transform">রূপান্তর</div>
 </div>
 </section>
 </main>
 
 <script>
-// Menu toggle
+// Current language (default Bangla)
+let currentLang = 'bn';
+
+// Menu toggle for mobile
 document.getElementById('menuToggle').onclick = function() {
 this.classList.toggle('active');
-document.getElementById('nav').classList.toggle('active');
+document.getElementById('navCenter').classList.toggle('active');
+document.getElementById('navRight').classList.toggle('active');
 };
+
+// Language switcher
+function switchLanguage(lang) {
+currentLang = lang;
+document.documentElement.lang = lang;
+
+// Update all elements with data-bn and data-en attributes
+document.querySelectorAll('[data-bn][data-en]').forEach(element => {
+element.textContent = element.getAttribute('data-' + lang);
+});
+
+// Update active state on language buttons
+document.querySelectorAll('.lang-btn').forEach(btn => {
+btn.classList.remove('active');
+});
+event.target.classList.add('active');
+
+// Update page title
+document.title = lang === 'bn' ? 'ডেল্টা ফোর্স' : 'Delta Force';
+}
 
 // Slideshow
 const slides = document.querySelectorAll('.slide');
