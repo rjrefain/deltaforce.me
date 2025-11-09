@@ -41,10 +41,9 @@ padding: 8px 20px;
 background: rgba(255, 255, 255, 0.15);
 border-radius: 8px;
 transition: transform 0.3s;
-}
-a.brand {
 text-decoration: none;
 }
+
 .brand:hover {
 transform: scale(1.03);
 }
@@ -176,9 +175,9 @@ position: fixed;
 top: 0;
 left: 0;
 width: 100%;
-height: 100%;
+height: 100vh;
 background: linear-gradient(135deg, #2d7a4f, #1a5c38);
-z-index: 999;
+z-index: 9999;
 padding: 80px 20px 20px;
 overflow-y: auto;
 }
@@ -233,18 +232,21 @@ right: 20px;
 font-size: 32px;
 color: white;
 background: rgba(255, 255, 255, 0.2);
-width: 45px;
-height: 45px;
+width: 50px;
+height: 50px;
 border-radius: 8px;
 display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
 transition: all 0.3s;
+border: 2px solid rgba(255, 255, 255, 0.3);
+font-weight: 300;
+line-height: 1;
 }
 
 .mobile-close:hover {
-background: rgba(255, 255, 255, 0.3);
+background: rgba(255, 255, 255, 0.4);
 transform: rotate(90deg);
 }
 
@@ -389,6 +391,7 @@ letter-spacing: 2px;
 <img src="images/Main logo delta force.png" alt="Delta Force">
 <span class="brand-name" data-bn="ডেল্টা ফোর্স" data-en="DELTA FORCE">ডেল্টা ফোর্স</span>
 </a>
+
 <div class="menu-toggle" id="menuToggle">
 <span></span>
 <span></span>
@@ -434,7 +437,7 @@ letter-spacing: 2px;
 <div class="bg-container" id="bgContainer"></div>
 
 <main>
-<section class="slideshow-section">
+<section class="slideshow-section" id="home">
 <div class="slideshow-container">
 <div class="slide active"><img src="images/1.png" alt="Slide 1"></div>
 <div class="slide"><img src="images/2.png" alt="Slide 2"></div>
@@ -462,17 +465,22 @@ letter-spacing: 2px;
 let currentLang = 'bn';
 
 // Menu toggle for mobile
-document.getElementById('menuToggle').onclick = function() {
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+
+menuToggle.addEventListener('click', function() {
 this.classList.toggle('active');
-document.getElementById('mobileMenu').classList.add('active');
+mobileMenu.classList.add('active');
 document.body.style.overflow = 'hidden';
-};
+});
 
 // Close mobile menu
-document.getElementById('mobileClose').addEventListener('click', closeMobileMenu);
+mobileClose.addEventListener('click', closeMobileMenu);
+
 function closeMobileMenu() {
-document.getElementById('menuToggle').classList.remove('active');
-document.getElementById('mobileMenu').classList.remove('active');
+menuToggle.classList.remove('active');
+mobileMenu.classList.remove('active');
 document.body.style.overflow = '';
 }
 
