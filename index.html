@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ডেল্টা ফোর্স</title>
 <link rel="icon" type="image/png" href="images/Main logo delta force.png" />
-<link href="49" rel="stylesheet" />
+<link href="50" rel="stylesheet" />
 <style>
 :root{
 --header-h: 72px;
@@ -105,7 +105,7 @@ padding-right:100%;
 100%{transform:translateX(-100%);}
 }
 
-/* Slideshow section */
+/* Slideshow section - RIGHT ALIGNED */
 .slideshow-section{
 width:100%;
 padding:60px 3%;
@@ -113,10 +113,11 @@ background:linear-gradient(135deg, #f5f5dc 0%, #e8e8d0 100%);
 }
 .slideshow-container{
 max-width:800px;
-margin:0 auto;
+margin-left:auto;
+margin-right:0;
 }
 .slideshow-container h2{
-text-align:center;
+text-align:right;
 font-size:clamp(24px,4vw,36px);
 color:var(--green-1);
 margin-bottom:30px;
@@ -141,6 +142,10 @@ box-shadow:0 10px 40px rgba(0,77,0,.15);
 .menu-toggle{display:flex}
 .nav-center,.nav-right{display:none}
 .hero__bg{object-fit:cover;object-position:center}
+.slideshow-container{
+margin-left:auto;
+margin-right:0;
+}
 }
 @media (max-width:480px){
 .brand img{height:35px}
@@ -224,12 +229,12 @@ box-shadow:0 10px 40px rgba(0,77,0,.15);
 </div>
 </section>
 
-<!-- Scrolling text section (removed Delta Force text) -->
+<!-- Scrolling text section -->
 <section class="scroll-section">
 <div class="scroll-text" id="scrollText" data-bn="এটি একটি অরাজনৈতিক এবং অলাভজনক সংস্থা, আমরা মানবতার সেবা করতে এখানে আছি। একসাথে আমরা দাঁড়াই, বিভক্ত হলে পড়ে যাই।" data-en="This is a Non Political and Non Profit Organization, We are here to serve the humanity. Together we stand divided we fall.">এটি একটি অরাজনৈতিক এবং অলাভজনক সংস্থা, আমরা মানবতার সেবা করতে এখানে আছি। একসাথে আমরা দাঁড়াই, বিভক্ত হলে পড়ে যাই।</div>
 </section>
 
-<!-- Slideshow section -->
+<!-- Slideshow section - RIGHT ALIGNED -->
 <section class="slideshow-section">
 <div class="slideshow-container">
 <h2 data-bn="আমাদের গ্যালারি" data-en="Our Gallery">আমাদের গ্যালারি</h2>
