@@ -188,8 +188,7 @@ align-items: center;
 gap: 15px;
 }
 
-.mobile-menu a,
-.mobile-menu .donate-btn {
+.mobile-menu a {
 width: 100%;
 max-width: 350px;
 text-align: center;
@@ -205,6 +204,20 @@ transition: all 0.3s;
 
 .mobile-menu a:hover {
 background: rgba(255, 255, 255, 0.25);
+}
+
+.mobile-menu .donate-btn {
+width: 100%;
+max-width: 350px;
+padding: 15px;
+font-size: 16px;
+background: linear-gradient(135deg, #4CAF50, #45a049);
+box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+.mobile-menu .donate-btn:hover {
+transform: scale(1.02);
+box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
 }
 
 .mobile-menu .lang-switcher {
@@ -451,7 +464,7 @@ let currentLang = 'bn';
 document.getElementById('menuToggle').onclick = function() {
 this.classList.toggle('active');
 document.getElementById('mobileMenu').classList.add('active');
-document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+document.body.style.overflow = 'hidden';
 };
 
 // Close mobile menu
@@ -460,7 +473,7 @@ document.getElementById('mobileClose').onclick = closeMobileMenu;
 function closeMobileMenu() {
 document.getElementById('menuToggle').classList.remove('active');
 document.getElementById('mobileMenu').classList.remove('active');
-document.body.style.overflow = ''; // Restore scrolling
+document.body.style.overflow = '';
 }
 
 // Language switcher
