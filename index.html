@@ -1,372 +1,493 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>ডেল্টা ফোর্স</title>
-	<link rel="icon" type="image/png" href="images/Main logo delta force.png" />
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet" />
-	<style>
-		* { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ডেল্টা ফোর্স</title>
+  <link rel="icon" type="image/png" href="images/Main logo delta force.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-		body {
-			background: #f5f5dc;
-			font-family: 'Poppins','Hind Siliguri',sans-serif;
-			overflow-x: hidden;
-			color: #0f172a;
-		}
+    body {
+      background: #f5f5dc;
+      font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+      overflow-x: hidden;
+    }
 
-		/* Header */
-		header {
-			position: fixed; inset: 0 auto auto 0; width: 100%;
-			background: linear-gradient(135deg,#2d7a4f,#1a5c38);
-			padding: 12px 3%;
-			display: flex; align-items: center; justify-content: space-between;
-			box-shadow: 0 2px 15px rgba(0,0,0,0.2);
-			z-index: 1000;
-		}
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(135deg, #2d7a4f, #1a5c38);
+      padding: 12px 3%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10000;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    }
 
-		.brand {
-			display: flex; align-items: center; gap: 15px;
-			padding: 8px 20px; border-radius: 8px;
-			background: rgba(255,255,255,0.15);
-			text-decoration: none; transition: transform .25s;
-		}
-		.brand:hover { transform: scale(1.03); }
-		.brand img { height: 45px; }
-		.brand-name { color: #fff; font-weight: 700; letter-spacing: 1.5px; font-size: 22px; text-transform: uppercase; }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 8px 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      transition: transform 0.3s;
+      text-decoration: none;
+    }
 
-		.nav-center { display: flex; gap: 6px; flex: 1; justify-content: center; margin: 0 20px; }
-		.nav-center a {
-			color: #fff; text-decoration: none; font-weight: 600; font-size: 15px;
-			padding: 10px 18px; border-radius: 6px;
-			background: rgba(255,255,255,0.1); transition: all .2s; white-space: nowrap;
-		}
-		.nav-center a:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .brand:hover { transform: scale(1.03); }
 
-		.nav-right { display: flex; align-items: center; gap: 10px; }
-		.lang-switcher { display: flex; gap: 5px; background: rgba(255,255,255,0.15); padding: 5px; border-radius: 8px; }
-		.lang-btn {
-			border: 0; background: transparent; color: #fff; cursor: pointer;
-			font-weight: 600; padding: 8px 15px; border-radius: 6px; font-size: 14px;
-		}
-		.lang-btn.active { background: rgba(255,255,255,0.3); }
-		.lang-btn:hover { background: rgba(255,255,255,0.2); }
+    .brand img { height: 45px; }
 
-		.donate-btn {
-			border: 0; cursor: pointer; color: #fff; font-weight: 600; font-size: 15px;
-			padding: 10px 25px; border-radius: 8px;
-			background: linear-gradient(135deg,#4CAF50,#45a049);
-			box-shadow: 0 4px 10px rgba(76,175,80,0.3);
-			transition: all .2s;
-		}
-		.donate-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(76,175,80,0.4); }
+    .brand-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
 
-		/* Burger */
-		.menu-toggle {
-			display: none; flex-direction: column; gap: 5px;
-			padding: 10px; border-radius: 8px; cursor: pointer;
-			background: rgba(255,255,255,0.2);
-		}
-		.menu-toggle span {
-			width: 30px; height: 3px; background: #fff; border-radius: 2px; transition: .25s;
-		}
-		.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(8px,8px); }
-		.menu-toggle.active span:nth-child(2) { opacity: 0; }
-		.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(8px,-8px); }
+    .nav-center {
+      display: flex;
+      gap: 5px;
+      flex: 1;
+      justify-content: center;
+      margin: 0 20px;
+    }
 
-		/* Mobile Menu */
-		.mobile-menu {
-			position: fixed; inset: 0;
-			display: none;
-			background: linear-gradient(135deg,#2d7a4f,#1a5c38);
-			z-index: 2000;
-			padding: 80px 20px 20px;
-			overflow-y: auto;
-			overscroll-behavior: contain;
-			-webkit-overflow-scrolling: touch;
-		}
-		.mobile-menu.active { display: block; }
-		.mobile-close {
-			position: fixed; top: 20px; right: 20px;
-			width: 50px; height: 50px; border-radius: 8px;
-			display: grid; place-items: center; color: #fff; font-size: 32px; line-height: 1;
-			background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);
-			z-index: 2001; cursor: pointer; user-select: none;
-			transition: transform .25s, background .25s;
-		}
-		.mobile-close:hover { transform: rotate(180deg) scale(1.06); background: rgba(255,255,255,0.35); }
+    .nav-center a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
 
-		.mobile-inner {
-			max-width: 520px; margin: 0 auto;
-			display: flex; flex-direction: column; align-items: center; gap: 15px;
-			padding-bottom: 36px; /* extra space after last item */
-		}
-		.mobile-menu .lang-switcher { margin-top: 6px; }
+    .nav-center a:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
 
-		.mobile-menu a,
-		.mobile-menu .donate-btn {
-			width: 100%; max-width: 360px;
-		}
-		.mobile-menu a {
-			text-align: center; color: #fff; text-decoration: none; font-weight: 600; font-size: 16px;
-			padding: 15px; border-radius: 8px; background: rgba(255,255,255,0.15); transition: .2s;
-		}
-		.mobile-menu a:hover { background: rgba(255,255,255,0.25); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-		/* Main */
-		main { margin-top: 100px; padding: 10px 0; }
+    .lang-switcher {
+      display: flex;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 5px;
+      border-radius: 8px;
+    }
 
-		/* Hero/Slideshow */
-		.slideshow-section { width: 60%; margin: 0 auto 50px; }
-		.slideshow-container { position: relative; width: 100%; }
-		.slide {
-			display: none; width: 100%; background: #fff; border-radius: 20px; padding: 8px;
-			border: 3px solid rgba(45,122,79,0.3);
-			box-shadow: 0 10px 40px rgba(0,77,0,0.15);
-		}
-		.slide.active { display: block; }
-		.slide img { width: 100%; height: auto; display: block; border-radius: 12px; }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
 
-		/* Motto Section */
-		.motto-section { width: 100%; padding: 40px 0; text-align: center; background: rgba(45,122,79,0.05); }
-		.motto-container { position: relative; height: 100px; display: flex; align-items: center; justify-content: center; }
-		.motto-word {
-			font-size: 48px; font-weight: 700; color: #2d7a4f;
-			text-transform: uppercase; letter-spacing: 3px;
-			position: absolute; opacity: 0; transition: opacity 1s ease-in-out;
-		}
-		.motto-word.active { opacity: 1; }
+    .lang-btn.active { background: rgba(255, 255, 255, 0.3); }
+    .lang-btn:hover { background: rgba(255, 255, 255, 0.2); }
 
-		/* Placeholder Sections */
-		.section {
-			padding: 60px 3%; max-width: 1100px; margin: 0 auto;
-			background: #fff; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-			margin-bottom: 24px;
-		}
-		.section h2 { font-size: 28px; margin-bottom: 12px; color: #134e2a; }
-		.section p { line-height: 1.7; color: #334155; }
+    .donate-btn {
+      background: linear-gradient(135deg, #4CAF50, #45a049);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    }
 
-		/* Responsive */
-		@media (max-width: 1024px) {
-			.nav-center a { font-size: 14px; padding: 8px 12px; }
-			.slideshow-section { width: 80%; }
-		}
-		@media (max-width: 768px) {
-			.menu-toggle { display: flex; }
-			.nav-center, .nav-right { display: none; }
-			.brand-name { font-size: 18px; }
-			.brand img { height: 40px; }
-			.slideshow-section { width: 92%; }
-			.motto-word { font-size: 36px; }
-		}
-		@media (max-width: 480px) {
-			.brand { padding: 8px 15px; gap: 10px; }
-			.brand-name { font-size: 16px; letter-spacing: 1px; }
-			.brand img { height: 35px; }
-			.motto-word { font-size: 28px; letter-spacing: 2px; }
-		}
-	</style>
+    .donate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+    }
+
+    .menu-toggle span {
+      width: 30px;
+      height: 3px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(8px, -8px);
+    }
+
+    /* Mobile Menu Overlay */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(135deg, #2d7a4f, #1a5c38);
+      z-index: 10002; /* above header */
+      padding: 80px 20px 40px; /* bottom space */
+      overflow-y: auto;
+      overscroll-behavior: contain; /* stop background scroll */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .mobile-menu a {
+      width: 100%;
+      max-width: 350px;
+      text-align: center;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 15px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      transition: all 0.3s;
+    }
+
+    .mobile-menu a:hover { background: rgba(255, 255, 255, 0.25); }
+
+    .mobile-menu .donate-btn {
+      width: 100%;
+      max-width: 350px;
+      padding: 15px;
+      font-size: 16px;
+      background: linear-gradient(135deg, #4CAF50, #45a049);
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+    }
+
+    .mobile-menu .donate-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
+    }
+
+    .mobile-menu .lang-switcher { margin-top: 10px; }
+
+    .mobile-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      font-size: 32px;
+      color: white;
+      background: rgba(255, 255, 255, 0.2);
+      width: 50px; height: 50px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      font-weight: 300;
+      line-height: 1;
+      z-index: 10003; /* on top of menu */
+    }
+
+    .mobile-close:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: rotate(180deg) scale(1.1);
+    }
+
+    /* Background */
+    .bg-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+    }
+
+    /* Main Content */
+    main { margin-top: 100px; padding: 10px 0; }
+
+    .slideshow-section { width: 60%; margin: 0 auto 50px; }
+    .slideshow-container { position: relative; width: 100%; }
+
+    .slide {
+      display: none;
+      width: 100%;
+      background: white;
+      border-radius: 20px;
+      padding: 8px;
+      border: 3px solid rgba(45, 122, 79, 0.3);
+      box-shadow: 0 10px 40px rgba(0, 77, 0, 0.15);
+    }
+
+    .slide.active { display: block; }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
+    /* Motto Section */
+    .motto-section {
+      width: 100%;
+      padding: 40px 0;
+      text-align: center;
+      background: rgba(45, 122, 79, 0.05);
+    }
+
+    .motto-container {
+      position: relative;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .motto-word {
+      font-size: 48px;
+      font-weight: 700;
+      color: #2d7a4f;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .motto-word.active { opacity: 1; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .nav-center a { font-size: 14px; padding: 8px 12px; }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      .nav-center, .nav-right { display: none; }
+
+      .brand-name { font-size: 18px; }
+      .brand img { height: 40px; }
+
+      .slideshow-section { width: 90%; }
+      .motto-word { font-size: 36px; }
+    }
+
+    @media (max-width: 480px) {
+      .brand { padding: 8px 15px; gap: 10px; }
+      .brand-name { font-size: 16px; letter-spacing: 1px; }
+      .brand img { height: 35px; }
+      .motto-word { font-size: 28px; letter-spacing: 2px; }
+    }
+  </style>
 </head>
 <body>
-	<header>
-		<a href="index.html" class="brand" id="brandLink" aria-label="Home">
-			<img src="images/Main logo delta force.png" alt="Delta Force" />
-			<span class="brand-name" data-bn="ডেল্টা ফোর্স" data-en="DELTA FORCE">ডেল্টা ফোর্স</span>
-		</a>
+  <header>
+    <!-- Logo goes to index.html and also closes menu if open -->
+    <a href="index.html" class="brand" id="brandLink" aria-label="Home">
+      <img src="images/Main logo delta force.png" alt="Delta Force">
+      <span class="brand-name" data-bn="ডেল্টা ফোর্স" data-en="DELTA FORCE">ডেল্টা ফোর্স</span>
+    </a>
 
-		<div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
-			<span></span><span></span><span></span>
-		</div>
+    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </div>
 
-		<nav class="nav-center">
-			<a href="#home" data-bn="হোম" data-en="Home">হোম</a>
-			<a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</a>
-			<a href="#gallery" data-bn="গ্যালারি" data-en="Gallery">গ্যালারি</a>
-			<a href="#location" data-bn="অবস্থান" data-en="Location">অবস্থান</a>
-			<a href="#track" data-bn="ট্র্যাক" data-en="Track">ট্র্যাক</a>
-			<a href="#apply" data-bn="আবেদন করুন" data-en="Apply">আবেদন করুন</a>
-			<a href="#administration" data-bn="প্রশাসন" data-en="Administration">प्रশাসন</a>
-		</nav>
+    <nav class="nav-center" id="navCenter">
+      <a href="#home" data-bn="হোম" data-en="Home">হোম</a>
+      <a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</a>
+      <a href="#gallery" data-bn="গ্যালারি" data-en="Gallery">গ্যালারি</a>
+      <a href="#location" data-bn="অবস্থান" data-en="Location">অবস্থান</a>
+      <a href="#track" data-bn="ট্র্যাক" data-en="Track">ট্র্যাক</a>
+      <a href="#apply" data-bn="আবেদন করুন" data-en="Apply">আবেদন করুন</a>
+      <a href="#administration" data-bn="প্রশাসন" data-en="Administration">প্রশাসন</a>
+    </nav>
 
-		<div class="nav-right">
-			<div class="lang-switcher">
-				<button class="lang-btn active" data-lang="bn">বাং</button>
-				<button class="lang-btn" data-lang="en">EN</button>
-			</div>
-			<button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
-		</div>
-	</header>
+    <div class="nav-right" id="navRight">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="bn">বাং</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
+    </div>
+  </header>
 
-	<!-- Mobile Menu -->
-	<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-		<div class="mobile-close" id="mobileClose" aria-label="Close">×</div>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-close" id="mobileClose" aria-label="Close menu" role="button">×</div>
 
-		<div class="mobile-inner" id="mobileInner">
-			<div class="lang-switcher">
-				<button class="lang-btn active" data-lang="bn">বাং</button>
-				<button class="lang-btn" data-lang="en">EN</button>
-			</div>
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="bn">বাং</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
 
-			<button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
+    <button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
 
-			<a href="#home" data-bn="হোম" data-en="Home">হোম</a>
-			<a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</a>
-			<a href="#gallery" data-bn="গ্যালারি" data-en="Gallery">গ্যালারি</a>
-			<a href="#location" data-bn="অবস্থান" data-en="Location">অবস্থান</a>
-			<a href="#track" data-bn="ট্র্যাক" data-en="Track">ট্র্যাক</a>
-			<a href="#apply" data-bn="আবেদন করুন" data-en="Apply">আবেদন করুন</a>
-			<a href="#administration" data-bn="প্রশাসন" data-en="Administration">প্রশাসন</a>
-		</div>
-	</div>
+    <a href="#home" data-bn="হোম" data-en="Home" onclick="closeMobileMenu()">হোম</a>
+    <a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us" onclick="closeMobileMenu()">আমাদের সম্পর্কে</a>
+    <a href="#gallery" data-bn="গ্যালারি" data-en="Gallery" onclick="closeMobileMenu()">গ্যালারি</a>
+    <a href="#location" data-bn="অবস্থান" data-en="Location" onclick="closeMobileMenu()">অবস্থান</a>
+    <a href="#track" data-bn="ট্র্যাক" data-en="Track" onclick="closeMobileMenu()">ট্র্যাক</a>
+    <a href="#apply" data-bn="আবেদন করুন" data-en="Apply" onclick="closeMobileMenu()">আবেদন করুন</a>
+    <a href="#administration" data-bn="প্রশাসন" data-en="Administration" onclick="closeMobileMenu()">প্রশাসন</a>
 
-	<main>
-		<section class="slideshow-section" id="home">
-			<div class="slideshow-container">
-				<div class="slide active"><img src="images/1.png" alt="Slide 1" /></div>
-				<div class="slide"><img src="images/2.png" alt="Slide 2" /></div>
-				<div class="slide"><img src="images/3.png" alt="Slide 3" /></div>
-				<div class="slide"><img src="images/4.png" alt="Slide 4" /></div>
-				<div class="slide"><img src="images/5.png" alt="Slide 5" /></div>
-				<div class="slide"><img src="images/6.png" alt="Slide 6" /></div>
-				<div class="slide"><img src="images/7.png" alt="Slide 7" /></div>
-				<div class="slide"><img src="images/8.png" alt="Slide 8" /></div>
-				<div class="slide"><img src="images/9.png" alt="Slide 9" /></div>
-			</div>
-		</section>
+    <!-- Bottom breathing room already added via padding: 80px 20px 40px -->
+  </div>
 
-		<section class="motto-section">
-			<div class="motto-container">
-				<div class="motto-word active" data-bn="ক্ষমতায়ন" data-en="Empower">ক্ষমতায়ন</div>
-				<div class="motto-word" data-bn="উন্নতি" data-en="Uplift">উন্নতি</div>
-				<div class="motto-word" data-bn="রূপান্তর" data-en="Transform">রূপান্তর</div>
-			</div>
-		</section>
+  <div class="bg-container" id="bgContainer"></div>
 
-		<!-- Content stubs (optional to keep the page longer like your original) -->
-		<section id="about" class="section">
-			<h2 data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</h2>
-			<p data-bn="এই সেকশনে আপনার সংগঠনের তথ্য থাকবে।" data-en="Put your organization info here.">এই সেকশনে আপনার সংগঠনের তথ্য থাকবে।</p>
-		</section>
+  <main>
+    <section class="slideshow-section" id="home">
+      <div class="slideshow-container">
+        <div class="slide active"><img src="images/1.png" alt="Slide 1"></div>
+        <div class="slide"><img src="images/2.png" alt="Slide 2"></div>
+        <div class="slide"><img src="images/3.png" alt="Slide 3"></div>
+        <div class="slide"><img src="images/4.png" alt="Slide 4"></div>
+        <div class="slide"><img src="images/5.png" alt="Slide 5"></div>
+        <div class="slide"><img src="images/6.png" alt="Slide 6"></div>
+        <div class="slide"><img src="images/7.png" alt="Slide 7"></div>
+        <div class="slide"><img src="images/8.png" alt="Slide 8"></div>
+        <div class="slide"><img src="images/9.png" alt="Slide 9"></div>
+      </div>
+    </section>
 
-		<section id="gallery" class="section">
-			<h2 data-bn="গ্যালারি" data-en="Gallery">গ্যালারি</h2>
-			<p data-bn="এখানে ছবি বা ভিডিও গ্যালারি যোগ করুন।" data-en="Add your images or videos gallery here.">এখানে ছবি বা ভিডিও গ্যালারি যোগ করুন।</p>
-		</section>
+    <section class="motto-section">
+      <div class="motto-container">
+        <div class="motto-word active" data-bn="ক্ষমতায়ন" data-en="Empower">ক্ষমতায়ন</div>
+        <div class="motto-word" data-bn="উন্নতি" data-en="Uplift">উন্নতি</div>
+        <div class="motto-word" data-bn="রূপান্তর" data-en="Transform">রূপান্তর</div>
+      </div>
+    </section>
+  </main>
 
-		<section id="location" class="section">
-			<h2 data-bn="অবস্থান" data-en="Location">অবস্থান</h2>
-			<p data-bn="আপনার অবস্থানের ঠিকানা/মানচিত্র যোগ করুন।" data-en="Add your address or map here.">আপনার অবস্থানের ঠিকানা/মানচিত্র যোগ করুন।</p>
-		</section>
+  <script>
+    // Language state
+    let currentLang = 'bn';
 
-		<section id="track" class="section">
-			<h2 data-bn="ট্র্যাক" data-en="Track">ট্র্যাক</h2>
-			<p data-bn="ট্র্যাকিং বা স্ট্যাটাস তথ্য এখানে থাকবে।" data-en="Tracking or status info goes here.">ট্র্যাকিং বা স্ট্যাটাস তথ্য এখানে থাকবে।</p>
-		</section>
+    // Elements
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    const brandLink = document.getElementById('brandLink');
 
-		<section id="apply" class="section">
-			<h2 data-bn="আবেদন করুন" data-en="Apply">আবেদন করুন</h2>
-			<p data-bn="আবেদন ফর্ম/লিঙ্ক দিন।" data-en="Place your application form or link here.">আবেদন ফর্ম/লিঙ্ক দিন।</p>
-		</section>
+    // Open / Close helpers
+    function openMobileMenu() {
+      menuToggle.classList.add('active');
+      mobileMenu.classList.add('active');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
 
-		<section id="administration" class="section">
-			<h2 data-bn="প্রশাসন" data-en="Administration">প্রশাসন</h2>
-			<p data-bn="প্রশাসনিক তথ্য বা কন্ট্যাক্ট দিন।" data-en="Administrative info or contacts.">প্রশাসনিক তথ্য বা কন্ট্যাক্ট দিন।</p>
-		</section>
-	</main>
+    function closeMobileMenu() {
+      menuToggle.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = 'auto';
+    }
 
-	<script>
-		// Language state
-		let currentLang = 'bn';
+    // Toggle button
+    menuToggle.addEventListener('click', function () {
+      const willOpen = !mobileMenu.classList.contains('active');
+      if (willOpen) openMobileMenu();
+      else closeMobileMenu();
+    });
 
-		// Elements
-		const body = document.body;
-		const menuToggle = document.getElementById('menuToggle');
-		const mobileMenu = document.getElementById('mobileMenu');
-		const mobileInner = document.getElementById('mobileInner');
-		const mobileClose = document.getElementById('mobileClose');
-		const brandLink = document.getElementById('brandLink');
+    // Close button
+    mobileClose.addEventListener('click', function (e) {
+      e.stopPropagation();
+      closeMobileMenu();
+    });
 
-		// Menu helpers
-		function openMenu() {
-			menuToggle.classList.add('active');
-			mobileMenu.classList.add('active');
-			mobileMenu.setAttribute('aria-hidden','false');
-			menuToggle.setAttribute('aria-expanded','true');
-			body.style.overflow = 'hidden';
-		}
-		function closeMenu() {
-			menuToggle.classList.remove('active');
-			mobileMenu.classList.remove('active');
-			mobileMenu.setAttribute('aria-hidden','true');
-			menuToggle.setAttribute('aria-expanded','false');
-			body.style.overflow = 'auto';
-		}
-		function toggleMenu() {
-			if (mobileMenu.classList.contains('active')) closeMenu();
-			else openMenu();
-		}
+    // Backdrop click (outside menu items) closes menu
+    mobileMenu.addEventListener('click', function (e) {
+      // if user clicked directly on the overlay (not a button/link inside)
+      const clickedOnOverlay = e.target === mobileMenu;
+      if (clickedOnOverlay) closeMobileMenu();
+    });
 
-		// Open/close interactions
-		menuToggle.addEventListener('click', toggleMenu);
-		mobileClose.addEventListener('click', (e) => { e.stopPropagation(); closeMenu(); });
+    // Logo click closes menu (navigation proceeds to index.html)
+    brandLink.addEventListener('click', function () {
+      if (mobileMenu.classList.contains('active')) closeMobileMenu();
+    });
 
-		// Backdrop click closes (outside inner content)
-		mobileMenu.addEventListener('click', (e) => {
-			if (!mobileInner.contains(e.target)) closeMenu();
-		});
+    // Language switcher
+    function switchLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
 
-		// Clicking any link/button in mobile menu closes it
-		mobileMenu.querySelectorAll('a, .donate-btn, .lang-btn').forEach(el => {
-			el.addEventListener('click', () => closeMenu());
-		});
+      // Update all elements with data-bn and data-en attributes
+      document.querySelectorAll('[data-bn][data-en]').forEach((element) => {
+        element.textContent = element.getAttribute('data-' + lang);
+      });
 
-		// Logo closes menu (and navigates to index.html by href)
-		brandLink.addEventListener('click', () => {
-			if (mobileMenu.classList.contains('active')) closeMenu();
-		});
+      // Update active state on language buttons
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        const btnLang = btn.getAttribute('data-lang');
+        if (btnLang) {
+          btn.classList.toggle('active', btnLang === lang);
+        }
+      });
 
-		// Language switcher
-		function switchLanguage(lang) {
-			currentLang = lang;
-			document.documentElement.lang = lang;
+      // Update page title
+      document.title = lang === 'bn' ? 'ডেল্টা ফোর্স' : 'Delta Force';
+    }
 
-			// Update text nodes that have both bn and en
-			document.querySelectorAll('[data-bn][data-en]').forEach((el) => {
-				el.textContent = el.getAttribute('data-' + lang);
-			});
+    // Attach language switchers (both headers)
+    document.querySelectorAll('.lang-btn[data-lang]').forEach((btn) => {
+      btn.addEventListener('click', () => switchLanguage(btn.getAttribute('data-lang')));
+    });
 
-			// Active button styles
-			document.querySelectorAll('.lang-btn').forEach((btn) => {
-				const btnLang = btn.getAttribute('data-lang');
-				if (btnLang) btn.classList.toggle('active', btnLang === lang);
-			});
+    // Slideshow
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 7000);
 
-			// Title
-			document.title = lang === 'bn' ? 'ডেল্টা ফোর্স' : 'Delta Force';
-		}
-
-		document.querySelectorAll('.lang-btn[data-lang]').forEach((btn) => {
-			btn.addEventListener('click', () => switchLanguage(btn.getAttribute('data-lang')));
-		});
-
-		// Slideshow
-		const slides = document.querySelectorAll('.slide');
-		let current = 0;
-		setInterval(() => {
-			slides[current].classList.remove('active');
-			current = (current + 1) % slides.length;
-			slides[current].classList.add('active');
-		}, 7000);
-
-		// Motto animation
-		const mottoWords = document.querySelectorAll('.motto-word');
-		let currentMotto = 0;
-		setInterval(() => {
-			mottoWords[currentMotto].classList.remove('active');
-			currentMotto = (currentMotto + 1) % mottoWords.length;
-			mottoWords[currentMotto].classList.add('active');
-		}, 3000);
-	</script>
+    // Motto animation
+    const mottoWords = document.querySelectorAll('.motto-word');
+    let currentMotto = 0;
+    setInterval(() => {
+      mottoWords[currentMotto].classList.remove('active');
+      currentMotto = (currentMotto + 1) % mottoWords.length;
+      mottoWords[currentMotto].classList.add('active');
+    }, 3000);
+  </script>
 </body>
 </html>
