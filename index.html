@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ডেল্টা ফোর্স</title>
 <link rel="icon" type="image/png" href="images/Main logo delta force.png" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet" />
+<link href="48" rel="stylesheet" />
 <style>
 :root{
 --header-h: 72px;
@@ -83,10 +83,33 @@ min-height:clamp(60vh, 78vh, 92vh);
 .btn--ghost{color:#fff;border:2px solid rgba(255,255,255,.7);background:transparent}
 .btn--ghost:hover{background:rgba(255,255,255,.12)}
 
-/* Motto section */
-.motto-section{width:100%;padding:40px 0;text-align:center;background:rgba(45,122,79,.05)}
-.motto-container{position:relative;height:100px;display:flex;align-items:center;justify-content:center}
+/* Motto section with scrolling text */
+.motto-section{width:100%;padding:40px 0;text-align:center;background:rgba(45,122,79,.05);overflow:hidden}
+.motto-container{position:relative;height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
 .motto-fallback{font-size:40px;font-weight:700;color:#2d7a4f}
+
+/* Scrolling text */
+.scroll-container{
+width:100%;
+overflow:hidden;
+background:linear-gradient(135deg,var(--green-1),var(--green-2));
+padding:15px 0;
+position:relative;
+}
+.scroll-text{
+display:inline-block;
+white-space:nowrap;
+color:#fff;
+font-size:clamp(16px, 2.5vw, 20px);
+font-weight:600;
+letter-spacing:0.5px;
+animation:scroll-left 25s linear infinite;
+padding-right:100%;
+}
+@keyframes scroll-left{
+0%{transform:translateX(100%);}
+100%{transform:translateX(-100%);}
+}
 
 /* Slideshow section */
 .slideshow-section{
@@ -124,11 +147,14 @@ box-shadow:0 10px 40px rgba(0,77,0,.15);
 .menu-toggle{display:flex}
 .nav-center,.nav-right{display:none}
 .hero__bg{object-fit:cover;object-position:center}
+.motto-fallback{font-size:32px}
 }
 @media (max-width:480px){
 .brand img{height:35px}
 .brand-name{font-size:16px;letter-spacing:1px}
 .slideshow-section{padding:40px 3%}
+.motto-fallback{font-size:24px}
+.scroll-text{font-size:14px}
 }
 </style>
 </head>
@@ -206,10 +232,13 @@ box-shadow:0 10px 40px rgba(0,77,0,.15);
 </div>
 </section>
 
-<!-- Motto section -->
+<!-- Motto section with scrolling text -->
 <section class="motto-section">
 <div class="motto-container">
 <div class="motto-fallback" data-bn="ডেল্টা ফোর্স" data-en="DELTA FORCE">ডেল্টা ফোর্স</div>
+<div class="scroll-container">
+<div class="scroll-text" id="scrollText" data-bn="এটি একটি অরাজনৈতিক এবং অলাভজনক সংস্থা, আমরা মানবতার সেবা করতে এখানে আছি। একসাথে আমরা দাঁড়াই, বিভক্ত হলে পড়ে যাই।" data-en="This is a Non Political and Non Profit Organization , We are here to serve the humanity. Thogether we stand devided we fall.">এটি একটি অরাজনৈতিক এবং অলাভজনক সংস্থা, আমরা মানবতার সেবা করতে এখানে আছি। একসাথে আমরা দাঁড়াই, বিভক্ত হলে পড়ে যাই।</div>
+</div>
 </div>
 </section>
 
@@ -284,8 +313,8 @@ if(!mobileMenu.classList.contains('active'))return;
 mobileContent.style.transition='transform .2s ease-out'; mobileContent.style.transform='translateY(0)';
 });
 
-// LANGUAGE SWITCHER - NEW CODE
-let currentLang = 'bn'; // Default language
+// LANGUAGE SWITCHER
+let currentLang = 'bn';
 
 function switchLanguage(lang) {
   currentLang = lang;
