@@ -39,11 +39,8 @@
       transition: transform 0.3s;
       text-decoration: none;
     }
-
     .brand:hover { transform: scale(1.03); }
-
     .brand img { height: 45px; }
-
     .brand-name {
       font-size: 22px;
       font-weight: 700;
@@ -59,7 +56,6 @@
       justify-content: center;
       margin: 0 20px;
     }
-
     .nav-center a {
       color: #ffffff;
       text-decoration: none;
@@ -71,18 +67,12 @@
       transition: all 0.3s;
       white-space: nowrap;
     }
-
     .nav-center a:hover {
       background: rgba(255, 255, 255, 0.25);
       transform: translateY(-2px);
     }
 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .nav-right { display: flex; align-items: center; gap: 10px; }
     .lang-switcher {
       display: flex;
       gap: 5px;
@@ -90,7 +80,6 @@
       padding: 5px;
       border-radius: 8px;
     }
-
     .lang-btn {
       background: transparent;
       border: none;
@@ -103,7 +92,6 @@
       transition: all 0.3s;
       font-family: 'Hind Siliguri', sans-serif;
     }
-
     .lang-btn.active { background: rgba(255, 255, 255, 0.3); }
     .lang-btn:hover { background: rgba(255, 255, 255, 0.2); }
 
@@ -119,7 +107,6 @@
       transition: all 0.3s;
       box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
     }
-
     .donate-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
@@ -134,7 +121,6 @@
       background: rgba(255, 255, 255, 0.2);
       border-radius: 8px;
     }
-
     .menu-toggle span {
       width: 30px;
       height: 3px;
@@ -142,14 +128,9 @@
       border-radius: 2px;
       transition: 0.3s;
     }
-
-    .menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(8px, 8px);
-    }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
     .menu-toggle.active span:nth-child(2) { opacity: 0; }
-    .menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(8px, -8px);
-    }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
 
     /* Mobile Menu Overlay */
     .mobile-menu {
@@ -165,12 +146,25 @@
       overscroll-behavior: contain; /* stop background scroll */
       -webkit-overflow-scrolling: touch;
     }
-
     .mobile-menu.active {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 15px;
+    }
+
+    /* Inner wrapper for overscroll vibe */
+    .mobile-content {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      transform: translateY(0);
+      transition: transform 0.2s ease-out;
+      will-change: transform;
+      padding-bottom: 12px; /* minor extra breathing room inside as well */
     }
 
     .mobile-menu a {
@@ -186,7 +180,6 @@
       background: rgba(255, 255, 255, 0.15);
       transition: all 0.3s;
     }
-
     .mobile-menu a:hover { background: rgba(255, 255, 255, 0.25); }
 
     .mobile-menu .donate-btn {
@@ -197,12 +190,10 @@
       background: linear-gradient(135deg, #4CAF50, #45a049);
       box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
     }
-
     .mobile-menu .donate-btn:hover {
       transform: scale(1.02);
       box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
     }
-
     .mobile-menu .lang-switcher { margin-top: 10px; }
 
     .mobile-close {
@@ -221,7 +212,6 @@
       line-height: 1;
       z-index: 10003; /* on top of menu */
     }
-
     .mobile-close:hover {
       background: rgba(255, 255, 255, 0.4);
       transform: rotate(180deg) scale(1.1);
@@ -250,9 +240,7 @@
       border: 3px solid rgba(45, 122, 79, 0.3);
       box-shadow: 0 10px 40px rgba(0, 77, 0, 0.15);
     }
-
     .slide.active { display: block; }
-
     .slide img {
       width: 100%;
       height: auto;
@@ -267,7 +255,6 @@
       text-align: center;
       background: rgba(45, 122, 79, 0.05);
     }
-
     .motto-container {
       position: relative;
       height: 100px;
@@ -275,7 +262,6 @@
       align-items: center;
       justify-content: center;
     }
-
     .motto-word {
       font-size: 48px;
       font-weight: 700;
@@ -286,25 +272,20 @@
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
-
     .motto-word.active { opacity: 1; }
 
     /* Responsive */
     @media (max-width: 1024px) {
       .nav-center a { font-size: 14px; padding: 8px 12px; }
     }
-
     @media (max-width: 768px) {
       .menu-toggle { display: flex; }
       .nav-center, .nav-right { display: none; }
-
       .brand-name { font-size: 18px; }
       .brand img { height: 40px; }
-
       .slideshow-section { width: 90%; }
       .motto-word { font-size: 36px; }
     }
-
     @media (max-width: 480px) {
       .brand { padding: 8px 15px; gap: 10px; }
       .brand-name { font-size: 16px; letter-spacing: 1px; }
@@ -348,22 +329,23 @@
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-close" id="mobileClose" aria-label="Close menu" role="button">×</div>
 
-    <div class="lang-switcher">
-      <button class="lang-btn active" data-lang="bn">বাং</button>
-      <button class="lang-btn" data-lang="en">EN</button>
+    <!-- Wrap inner items for overscroll transform -->
+    <div class="mobile-content" id="mobileContent">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="bn">বাং</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+
+      <button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
+
+      <a href="#home" data-bn="হোম" data-en="Home" onclick="closeMobileMenu()">হোম</a>
+      <a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us" onclick="closeMobileMenu()">আমাদের সম্পর্কে</a>
+      <a href="#gallery" data-bn="গ্যালারি" data-en="Gallery" onclick="closeMobileMenu()">গ্যালারি</a>
+      <a href="#location" data-bn="অবস্থান" data-en="Location" onclick="closeMobileMenu()">অবস্থান</a>
+      <a href="#track" data-bn="ট্র্যাক" data-en="Track" onclick="closeMobileMenu()">ট্র্যাক</a>
+      <a href="#apply" data-bn="আবেদন করুন" data-en="Apply" onclick="closeMobileMenu()">আবেদন করুন</a>
+      <a href="#administration" data-bn="প্রশাসন" data-en="Administration" onclick="closeMobileMenu()">প্রশাসন</a>
     </div>
-
-    <button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
-
-    <a href="#home" data-bn="হোম" data-en="Home" onclick="closeMobileMenu()">হোম</a>
-    <a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us" onclick="closeMobileMenu()">আমাদের সম্পর্কে</a>
-    <a href="#gallery" data-bn="গ্যালারি" data-en="Gallery" onclick="closeMobileMenu()">গ্যালারি</a>
-    <a href="#location" data-bn="অবস্থান" data-en="Location" onclick="closeMobileMenu()">অবস্থান</a>
-    <a href="#track" data-bn="ট্র্যাক" data-en="Track" onclick="closeMobileMenu()">ট্র্যাক</a>
-    <a href="#apply" data-bn="আবেদন করুন" data-en="Apply" onclick="closeMobileMenu()">আবেদন করুন</a>
-    <a href="#administration" data-bn="প্রশাসন" data-en="Administration" onclick="closeMobileMenu()">প্রশাসন</a>
-
-    <!-- Bottom breathing room already added via padding: 80px 20px 40px -->
   </div>
 
   <div class="bg-container" id="bgContainer"></div>
@@ -401,6 +383,7 @@
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileClose = document.getElementById('mobileClose');
     const brandLink = document.getElementById('brandLink');
+    const mobileContent = document.getElementById('mobileContent');
 
     // Open / Close helpers
     function openMobileMenu() {
@@ -410,13 +393,15 @@
       menuToggle.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     }
-
     function closeMobileMenu() {
       menuToggle.classList.remove('active');
       mobileMenu.classList.remove('active');
       mobileMenu.setAttribute('aria-hidden', 'true');
       menuToggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = 'auto';
+      // reset overscroll transform
+      mobileContent.style.transition = 'transform 0.2s ease-out';
+      mobileContent.style.transform = 'translateY(0)';
     }
 
     // Toggle button
@@ -432,14 +417,12 @@
       closeMobileMenu();
     });
 
-    // Backdrop click (outside menu items) closes menu
+    // Backdrop click (outside content) closes
     mobileMenu.addEventListener('click', function (e) {
-      // if user clicked directly on the overlay (not a button/link inside)
-      const clickedOnOverlay = e.target === mobileMenu;
-      if (clickedOnOverlay) closeMobileMenu();
+      if (e.target === mobileMenu) closeMobileMenu();
     });
 
-    // Logo click closes menu (navigation proceeds to index.html)
+    // Logo closes menu (navigation proceeds)
     brandLink.addEventListener('click', function () {
       if (mobileMenu.classList.contains('active')) closeMobileMenu();
     });
@@ -448,25 +431,15 @@
     function switchLanguage(lang) {
       currentLang = lang;
       document.documentElement.lang = lang;
-
-      // Update all elements with data-bn and data-en attributes
-      document.querySelectorAll('[data-bn][data-en]').forEach((element) => {
-        element.textContent = element.getAttribute('data-' + lang);
+      document.querySelectorAll('[data-bn][data-en]').forEach((el) => {
+        el.textContent = el.getAttribute('data-' + lang);
       });
-
-      // Update active state on language buttons
       document.querySelectorAll('.lang-btn').forEach((btn) => {
         const btnLang = btn.getAttribute('data-lang');
-        if (btnLang) {
-          btn.classList.toggle('active', btnLang === lang);
-        }
+        if (btnLang) btn.classList.toggle('active', btnLang === lang);
       });
-
-      // Update page title
       document.title = lang === 'bn' ? 'ডেল্টা ফোর্স' : 'Delta Force';
     }
-
-    // Attach language switchers (both headers)
     document.querySelectorAll('.lang-btn[data-lang]').forEach((btn) => {
       btn.addEventListener('click', () => switchLanguage(btn.getAttribute('data-lang')));
     });
@@ -488,6 +461,59 @@
       currentMotto = (currentMotto + 1) % mottoWords.length;
       mottoWords[currentMotto].classList.add('active');
     }, 3000);
+
+    /* Overscroll vibe (visual only) on mobile menu */
+    let startY = 0;
+    let edgePull = 0;
+    const visualCap = 40;  // max px for visual shift
+    const softness = 3;    // higher = softer movement
+
+    function atTop() {
+      return mobileMenu.scrollTop <= 0;
+    }
+    function atBottom() {
+      return mobileMenu.scrollTop + mobileMenu.clientHeight >= mobileMenu.scrollHeight - 1;
+    }
+
+    mobileMenu.addEventListener('touchstart', (e) => {
+      if (!mobileMenu.classList.contains('active')) return;
+      if (!e.touches || !e.touches.length) return;
+      startY = e.touches[0].clientY;
+      edgePull = 0;
+      mobileContent.style.transition = 'none';
+    }, { passive: true });
+
+    mobileMenu.addEventListener('touchmove', (e) => {
+      if (!mobileMenu.classList.contains('active')) return;
+      if (!e.touches || !e.touches.length) return;
+
+      const y = e.touches[0].clientY;
+      const delta = y - startY; // positive = finger moving down
+
+      // Top edge pull-down vibe
+      if (atTop() && delta > 0) {
+        edgePull = delta;
+        const translate = Math.min(visualCap, edgePull / softness);
+        mobileContent.style.transform = `translateY(${translate}px)`;
+      }
+      // Bottom edge pull-up vibe
+      else if (atBottom() && delta < 0) {
+        edgePull = -delta;
+        const translate = -Math.min(visualCap, edgePull / softness);
+        mobileContent.style.transform = `translateY(${translate}px)`;
+      }
+      else {
+        edgePull = 0;
+        mobileContent.style.transform = 'translateY(0)';
+      }
+    }, { passive: true });
+
+    mobileMenu.addEventListener('touchend', () => {
+      if (!mobileMenu.classList.contains('active')) return;
+      // Snap back softly
+      mobileContent.style.transition = 'transform 0.2s ease-out';
+      mobileContent.style.transform = 'translateY(0)';
+    });
   </script>
 </body>
 </html>
