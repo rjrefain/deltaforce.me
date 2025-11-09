@@ -1,304 +1,118 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ডেল্টা ফোর্স</title>
-  <link rel="icon" type="image/png" href="images/Main logo delta force.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/Main logo delta force.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background: #f5f5dc;
-      font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+      font-family: 'Poppins','Hind Siliguri',sans-serif;
       overflow-x: hidden;
     }
 
     /* Header */
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
+      position: fixed; top: 0; width: 100%;
       background: linear-gradient(135deg, #2d7a4f, #1a5c38);
       padding: 12px 3%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
       z-index: 10000;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 15px rgba(0,0,0,.2);
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 8px 20px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 8px;
-      transition: transform 0.3s;
-      text-decoration: none;
-    }
+    .brand { display:flex; align-items:center; gap:15px; padding:8px 20px; background:rgba(255,255,255,.15); border-radius:8px; text-decoration:none; transition:.3s; }
     .brand:hover { transform: scale(1.03); }
-    .brand img { height: 45px; }
-    .brand-name {
-      font-size: 22px;
-      font-weight: 700;
-      color: #ffffff;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
+    .brand img { height:45px; }
+    .brand-name { font-size:22px; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:1.5px; }
 
-    .nav-center {
-      display: flex;
-      gap: 5px;
-      flex: 1;
-      justify-content: center;
-      margin: 0 20px;
-    }
-    .nav-center a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      padding: 10px 18px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.1);
-      transition: all 0.3s;
-      white-space: nowrap;
-    }
-    .nav-center a:hover {
-      background: rgba(255, 255, 255, 0.25);
-      transform: translateY(-2px);
-    }
+    .nav-center { display:flex; gap:5px; flex:1; justify-content:center; margin:0 20px; }
+    .nav-center a { color:#fff; text-decoration:none; font-weight:600; font-size:15px; padding:10px 18px; border-radius:6px; background:rgba(255,255,255,.1); transition:.3s; white-space:nowrap; }
+    .nav-center a:hover { background:rgba(255,255,255,.25); transform: translateY(-2px); }
 
-    .nav-right { display: flex; align-items: center; gap: 10px; }
-    .lang-switcher {
-      display: flex;
-      gap: 5px;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 5px;
-      border-radius: 8px;
-    }
-    .lang-btn {
-      background: transparent;
-      border: none;
-      color: #ffffff;
-      padding: 8px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.3s;
-      font-family: 'Hind Siliguri', sans-serif;
-    }
-    .lang-btn.active { background: rgba(255, 255, 255, 0.3); }
-    .lang-btn:hover { background: rgba(255, 255, 255, 0.2); }
+    .nav-right { display:flex; align-items:center; gap:10px; }
+    .lang-switcher { display:flex; gap:5px; background:rgba(255,255,255,.15); padding:5px; border-radius:8px; }
+    .lang-btn { background:transparent; border:none; color:#fff; padding:8px 15px; border-radius:5px; cursor:pointer; font-weight:600; font-size:14px; transition:.3s; font-family:'Hind Siliguri',sans-serif; }
+    .lang-btn.active { background:rgba(255,255,255,.3); }
+    .lang-btn:hover { background:rgba(255,255,255,.2); }
+    .donate-btn { background:linear-gradient(135deg,#4CAF50,#45a049); color:#fff; border:none; padding:10px 25px; border-radius:8px; font-weight:600; font-size:15px; cursor:pointer; transition:.3s; box-shadow:0 4px 10px rgba(76,175,80,.3); }
+    .donate-btn:hover { transform: translateY(-2px); box-shadow:0 6px 15px rgba(76,175,80,.4); }
 
-    .donate-btn {
-      background: linear-gradient(135deg, #4CAF50, #45a049);
-      color: white;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
-    }
-    .donate-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
-    }
+    .menu-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:10px; background:rgba(255,255,255,.2); border-radius:8px; }
+    .menu-toggle span { width:30px; height:3px; background:#fff; border-radius:2px; transition:.3s; }
+    .menu-toggle.active span:nth-child(1){ transform:rotate(45deg) translate(8px,8px); }
+    .menu-toggle.active span:nth-child(2){ opacity:0; }
+    .menu-toggle.active span:nth-child(3){ transform:rotate(-45deg) translate(8px,-8px); }
 
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 8px;
-    }
-    .menu-toggle span {
-      width: 30px;
-      height: 3px;
-      background: #ffffff;
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
-    .menu-toggle.active span:nth-child(2) { opacity: 0; }
-    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
-
-    /* Mobile Menu Overlay */
+    /* Mobile Menu */
     .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100vh;
-      background: linear-gradient(135deg, #2d7a4f, #1a5c38);
-      z-index: 10002; /* above header */
-      padding: 80px 20px 40px; /* bottom space */
-      overflow-y: auto;
-      overscroll-behavior: contain; /* stop background scroll */
-      -webkit-overflow-scrolling: touch;
+      display:none; position:fixed; inset:0; background:linear-gradient(135deg,#2d7a4f,#1a5c38);
+      z-index:10002; padding:80px 20px 40px; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
     }
-    .mobile-menu.active {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
+    .mobile-menu.active { display:flex; flex-direction:column; align-items:center; gap:15px; }
+    .mobile-content { width:100%; max-width:420px; display:flex; flex-direction:column; align-items:center; gap:15px; transform:translateY(0); transition:transform .2s ease-out; will-change:transform; padding-bottom:12px; }
+    .mobile-menu a { width:100%; max-width:350px; text-align:center; color:#fff; text-decoration:none; font-weight:600; font-size:16px; padding:15px; border-radius:8px; background:rgba(255,255,255,.15); transition:.3s; }
+    .mobile-menu a:hover { background:rgba(255,255,255,.25); }
+    .mobile-menu .donate-btn { width:100%; max-width:350px; padding:15px; font-size:16px; background:linear-gradient(135deg,#4CAF50,#45a049); box-shadow:0 4px 15px rgba(76,175,80,.4); }
+    .mobile-menu .donate-btn:hover { transform:scale(1.02); box-shadow:0 6px 20px rgba(76,175,80,.5); }
+    .mobile-menu .lang-switcher{ margin-top:10px; }
+    .mobile-close { position:absolute; top:20px; right:20px; font-size:32px; color:#fff; background:rgba(255,255,255,.2); width:50px; height:50px; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:.4s; border:2px solid rgba(255,255,255,.3); font-weight:300; line-height:1; z-index:10003; }
+    .mobile-close:hover{ background:rgba(255,255,255,.4); transform:rotate(180deg) scale(1.1); }
 
-    /* Inner wrapper for overscroll vibe */
-    .mobile-content {
-      width: 100%;
-      max-width: 420px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      transform: translateY(0);
-      transition: transform 0.2s ease-out;
-      will-change: transform;
-      padding-bottom: 12px; /* minor extra breathing room inside as well */
+    /* Hero (new) */
+    main { margin-top: 100px; }
+    .hero { position:relative; width:100%; min-height:clamp(60vh, 80vh, 92vh); overflow:hidden; }
+    .hero__bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:saturate(1.05) contrast(1.02); }
+    .hero__overlay { position:absolute; inset:0;
+      background: linear-gradient(90deg,
+        rgba(0,0,0,.55) 0%,
+        rgba(0,0,0,.40) 30%,
+        rgba(0,0,0,.18) 60%,
+        rgba(0,0,0,0) 100%);
     }
+    .hero__content { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding: clamp(64px, 6vw, 96px) 3%; display:grid; gap:16px; justify-items:start; }
+    .hero h1 { color:#fff; font-size: clamp(28px, 5vw, 56px); line-height:1.15; font-weight:800; letter-spacing:.5px; text-shadow:0 2px 18px rgba(0,0,0,.35); }
+    .hero p  { color:#eef6ee; max-width:min(60ch, 90%); font-size:clamp(14px, 2.2vw, 18px); line-height:1.7; text-shadow:0 1px 12px rgba(0,0,0,.3); }
+    .hero__actions { display:flex; gap:12px; margin-top:8px; }
+    .btn { display:inline-block; padding:12px 18px; border-radius:10px; font-weight:700; text-decoration:none; transition: transform .18s, box-shadow .18s, background .18s; white-space:nowrap; }
+    .btn--primary { background:linear-gradient(135deg,#4CAF50,#45a049); color:#fff; box-shadow:0 8px 24px rgba(76,175,80,.35); }
+    .btn--primary:hover { transform:translateY(-2px); }
+    .btn--ghost { color:#fff; border:2px solid rgba(255,255,255,.7); background:transparent; }
+    .btn--ghost:hover { background:rgba(255,255,255,.12); }
 
-    .mobile-menu a {
-      width: 100%;
-      max-width: 350px;
-      text-align: center;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-      padding: 15px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.15);
-      transition: all 0.3s;
-    }
-    .mobile-menu a:hover { background: rgba(255, 255, 255, 0.25); }
-
-    .mobile-menu .donate-btn {
-      width: 100%;
-      max-width: 350px;
-      padding: 15px;
-      font-size: 16px;
-      background: linear-gradient(135deg, #4CAF50, #45a049);
-      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
-    }
-    .mobile-menu .donate-btn:hover {
-      transform: scale(1.02);
-      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
-    }
-    .mobile-menu .lang-switcher { margin-top: 10px; }
-
-    .mobile-close {
-      position: absolute;
-      top: 20px; right: 20px;
-      font-size: 32px;
-      color: white;
-      background: rgba(255, 255, 255, 0.2);
-      width: 50px; height: 50px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      font-weight: 300;
-      line-height: 1;
-      z-index: 10003; /* on top of menu */
-    }
-    .mobile-close:hover {
-      background: rgba(255, 255, 255, 0.4);
-      transform: rotate(180deg) scale(1.1);
-    }
-
-    /* Background */
-    .bg-container {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-    }
-
-    /* Main Content */
-    main { margin-top: 100px; padding: 10px 0; }
-
-    .slideshow-section { width: 60%; margin: 0 auto 50px; }
+    /* Slideshow moved below hero */
+    .slideshow-section { width: 60%; margin: 24px auto 50px; }
     .slideshow-container { position: relative; width: 100%; }
+    .slide { display:none; width:100%; background:#fff; border-radius:20px; padding:8px; border:3px solid rgba(45,122,79,.3); box-shadow:0 10px 40px rgba(0,77,0,.15); }
+    .slide.active{ display:block; }
+    .slide img { width:100%; height:auto; display:block; border-radius:12px; }
 
-    .slide {
-      display: none;
-      width: 100%;
-      background: white;
-      border-radius: 20px;
-      padding: 8px;
-      border: 3px solid rgba(45, 122, 79, 0.3);
-      box-shadow: 0 10px 40px rgba(0, 77, 0, 0.15);
-    }
-    .slide.active { display: block; }
-    .slide img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-    }
-
-    /* Motto Section */
-    .motto-section {
-      width: 100%;
-      padding: 40px 0;
-      text-align: center;
-      background: rgba(45, 122, 79, 0.05);
-    }
-    .motto-container {
-      position: relative;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .motto-word {
-      font-size: 48px;
-      font-weight: 700;
-      color: #2d7a4f;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      position: absolute;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    .motto-word.active { opacity: 1; }
+    /* Motto Section (unchanged) */
+    .motto-section { width:100%; padding:40px 0; text-align:center; background:rgba(45,122,79,.05); }
+    .motto-container { position:relative; height:100px; display:flex; align-items:center; justify-content:center; }
+    .motto-word { font-size:48px; font-weight:700; color:#2d7a4f; text-transform:uppercase; letter-spacing:3px; position:absolute; opacity:0; transition:opacity 1s ease-in-out; }
+    .motto-word.active { opacity:1; }
 
     /* Responsive */
-    @media (max-width: 1024px) {
-      .nav-center a { font-size: 14px; padding: 8px 12px; }
+    @media (max-width:1024px){ .nav-center a{font-size:14px; padding:8px 12px;} .slideshow-section{width:80%;} }
+    @media (max-width:768px){
+      .menu-toggle{display:flex;} .nav-center,.nav-right{display:none;}
+      .brand-name{font-size:18px;} .brand img{height:40px;}
+      .slideshow-section{width:92%;} .motto-word{font-size:36px;}
     }
-    @media (max-width: 768px) {
-      .menu-toggle { display: flex; }
-      .nav-center, .nav-right { display: none; }
-      .brand-name { font-size: 18px; }
-      .brand img { height: 40px; }
-      .slideshow-section { width: 90%; }
-      .motto-word { font-size: 36px; }
-    }
-    @media (max-width: 480px) {
-      .brand { padding: 8px 15px; gap: 10px; }
-      .brand-name { font-size: 16px; letter-spacing: 1px; }
-      .brand img { height: 35px; }
-      .motto-word { font-size: 28px; letter-spacing: 2px; }
+    @media (max-width:480px){
+      .brand{padding:8px 15px; gap:10px;} .brand-name{font-size:16px; letter-spacing:1px;} .brand img{height:35px;}
+      .motto-word{font-size:28px; letter-spacing:2px;}
     }
   </style>
 </head>
 <body>
   <header>
-    <!-- Logo goes to index.html and also closes menu if open -->
     <a href="index.html" class="brand" id="brandLink" aria-label="Home">
-      <img src="images/Main logo delta force.png" alt="Delta Force">
+      <img src="images/Main logo delta force.png" alt="Delta Force" />
       <span class="brand-name" data-bn="ডেল্টা ফোর্স" data-en="DELTA FORCE">ডেল্টা ফোর্স</span>
     </a>
 
@@ -328,43 +142,53 @@
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-close" id="mobileClose" aria-label="Close menu" role="button">×</div>
-
-    <!-- Wrap inner items for overscroll transform -->
     <div class="mobile-content" id="mobileContent">
       <div class="lang-switcher">
         <button class="lang-btn active" data-lang="bn">বাং</button>
         <button class="lang-btn" data-lang="en">EN</button>
       </div>
-
       <button class="donate-btn" data-bn="দান করুন" data-en="Donate Now">দান করুন</button>
-
-      <a href="#home" data-bn="হোম" data-en="Home" onclick="closeMobileMenu()">হোম</a>
-      <a href="#about" data-bn="আমাদের সম্পর্কে" data-en="About Us" onclick="closeMobileMenu()">আমাদের সম্পর্কে</a>
-      <a href="#gallery" data-bn="গ্যালারি" data-en="Gallery" onclick="closeMobileMenu()">গ্যালারি</a>
-      <a href="#location" data-bn="অবস্থান" data-en="Location" onclick="closeMobileMenu()">অবস্থান</a>
-      <a href="#track" data-bn="ট্র্যাক" data-en="Track" onclick="closeMobileMenu()">ট্র্যাক</a>
-      <a href="#apply" data-bn="আবেদন করুন" data-en="Apply" onclick="closeMobileMenu()">আবেদন করুন</a>
-      <a href="#administration" data-bn="প্রশাসন" data-en="Administration" onclick="closeMobileMenu()">প্রশাসন</a>
+      <a href="#home" onclick="closeMobileMenu()">হোম</a>
+      <a href="#about" onclick="closeMobileMenu()">আমাদের সম্পর্কে</a>
+      <a href="#gallery" onclick="closeMobileMenu()">গ্যালারি</a>
+      <a href="#location" onclick="closeMobileMenu()">অবস্থান</a>
+      <a href="#track" onclick="closeMobileMenu()">ট্র্যাক</a>
+      <a href="#apply" onclick="closeMobileMenu()">আবেদন করুন</a>
+      <a href="#administration" onclick="closeMobileMenu()">প্রশাসন</a>
     </div>
   </div>
 
-  <div class="bg-container" id="bgContainer"></div>
-
   <main>
-    <section class="slideshow-section" id="home">
-      <div class="slideshow-container">
-        <div class="slide active"><img src="images/1.png" alt="Slide 1"></div>
-        <div class="slide"><img src="images/2.png" alt="Slide 2"></div>
-        <div class="slide"><img src="images/3.png" alt="Slide 3"></div>
-        <div class="slide"><img src="images/4.png" alt="Slide 4"></div>
-        <div class="slide"><img src="images/5.png" alt="Slide 5"></div>
-        <div class="slide"><img src="images/6.png" alt="Slide 6"></div>
-        <div class="slide"><img src="images/7.png" alt="Slide 7"></div>
-        <div class="slide"><img src="images/8.png" alt="Slide 8"></div>
-        <div class="slide"><img src="images/9.png" alt="Slide 9"></div>
+    <!-- HERO with gradient and text -->
+    <section class="hero" id="home">
+      <img class="hero__bg" src="images/Landing page image.jpg" alt="Landing background" />
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <h1>আলোকিত পরিবর্তনের যাত্রা</h1>
+        <p>শক্তি, শৃঙ্খলা, আর মানবিকতার সমন্বয়ে এগিয়ে যাও—ডেল্টা ফোর্সের সাথে।</p>
+        <div class="hero__actions">
+          <a href="#apply" class="btn btn--primary">আজই যোগ দিন</a>
+          <a href="#about" class="btn btn--ghost">আরও জানুন</a>
+        </div>
       </div>
     </section>
 
+    <!-- Slideshow moved BELOW the hero text -->
+    <section class="slideshow-section" aria-label="Recent highlights">
+      <div class="slideshow-container">
+        <div class="slide active"><img src="images/1.png" alt="Slide 1" /></div>
+        <div class="slide"><img src="images/2.png" alt="Slide 2" /></div>
+        <div class="slide"><img src="images/3.png" alt="Slide 3" /></div>
+        <div class="slide"><img src="images/4.png" alt="Slide 4" /></div>
+        <div class="slide"><img src="images/5.png" alt="Slide 5" /></div>
+        <div class="slide"><img src="images/6.png" alt="Slide 6" /></div>
+        <div class="slide"><img src="images/7.png" alt="Slide 7" /></div>
+        <div class="slide"><img src="images/8.png" alt="Slide 8" /></div>
+        <div class="slide"><img src="images/9.png" alt="Slide 9" /></div>
+      </div>
+    </section>
+
+    <!-- Motto (unchanged) -->
     <section class="motto-section">
       <div class="motto-container">
         <div class="motto-word active" data-bn="ক্ষমতায়ন" data-en="Empower">ক্ষমতায়ন</div>
@@ -389,60 +213,37 @@
     function openMobileMenu() {
       menuToggle.classList.add('active');
       mobileMenu.classList.add('active');
-      mobileMenu.setAttribute('aria-hidden', 'false');
-      menuToggle.setAttribute('aria-expanded', 'true');
+      mobileMenu.setAttribute('aria-hidden','false');
+      menuToggle.setAttribute('aria-expanded','true');
       document.body.style.overflow = 'hidden';
     }
     function closeMobileMenu() {
       menuToggle.classList.remove('active');
       mobileMenu.classList.remove('active');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      menuToggle.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden','true');
+      menuToggle.setAttribute('aria-expanded','false');
       document.body.style.overflow = 'auto';
-      // reset overscroll transform
-      mobileContent.style.transition = 'transform 0.2s ease-out';
+      mobileContent.style.transition = 'transform .2s ease-out';
       mobileContent.style.transform = 'translateY(0)';
     }
 
-    // Toggle button
-    menuToggle.addEventListener('click', function () {
-      const willOpen = !mobileMenu.classList.contains('active');
-      if (willOpen) openMobileMenu();
-      else closeMobileMenu();
-    });
-
-    // Close button
-    mobileClose.addEventListener('click', function (e) {
-      e.stopPropagation();
-      closeMobileMenu();
-    });
-
-    // Backdrop click (outside content) closes
-    mobileMenu.addEventListener('click', function (e) {
-      if (e.target === mobileMenu) closeMobileMenu();
-    });
-
-    // Logo closes menu (navigation proceeds)
-    brandLink.addEventListener('click', function () {
+    // Toggle
+    menuToggle.addEventListener('click', () => {
       if (mobileMenu.classList.contains('active')) closeMobileMenu();
+      else openMobileMenu();
     });
+    mobileClose.addEventListener('click', (e) => { e.stopPropagation(); closeMobileMenu(); });
+    mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMobileMenu(); });
+    brandLink.addEventListener('click', () => { if (mobileMenu.classList.contains('active')) closeMobileMenu(); });
 
     // Language switcher
-    function switchLanguage(lang) {
-      currentLang = lang;
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-bn][data-en]').forEach((el) => {
-        el.textContent = el.getAttribute('data-' + lang);
-      });
-      document.querySelectorAll('.lang-btn').forEach((btn) => {
-        const btnLang = btn.getAttribute('data-lang');
-        if (btnLang) btn.classList.toggle('active', btnLang === lang);
-      });
+    function switchLanguage(lang){
+      currentLang = lang; document.documentElement.lang = lang;
+      document.querySelectorAll('[data-bn][data-en]').forEach(el => { el.textContent = el.getAttribute('data-' + lang); });
+      document.querySelectorAll('.lang-btn').forEach(btn => { const l = btn.getAttribute('data-lang'); if (l) btn.classList.toggle('active', l === lang); });
       document.title = lang === 'bn' ? 'ডেল্টা ফোর্স' : 'Delta Force';
     }
-    document.querySelectorAll('.lang-btn[data-lang]').forEach((btn) => {
-      btn.addEventListener('click', () => switchLanguage(btn.getAttribute('data-lang')));
-    });
+    document.querySelectorAll('.lang-btn[data-lang]').forEach(btn => { btn.addEventListener('click', () => switchLanguage(btn.getAttribute('data-lang'))); });
 
     // Slideshow
     const slides = document.querySelectorAll('.slide');
@@ -453,7 +254,7 @@
       slides[current].classList.add('active');
     }, 7000);
 
-    // Motto animation
+    // Motto
     const mottoWords = document.querySelectorAll('.motto-word');
     let currentMotto = 0;
     setInterval(() => {
@@ -462,56 +263,33 @@
       mottoWords[currentMotto].classList.add('active');
     }, 3000);
 
-    /* Overscroll vibe (visual only) on mobile menu */
+    /* Visual-only overscroll vibe for mobile menu edges */
     let startY = 0;
-    let edgePull = 0;
-    const visualCap = 40;  // max px for visual shift
-    const softness = 3;    // higher = softer movement
-
-    function atTop() {
-      return mobileMenu.scrollTop <= 0;
-    }
-    function atBottom() {
-      return mobileMenu.scrollTop + mobileMenu.clientHeight >= mobileMenu.scrollHeight - 1;
-    }
+    const visualCap = 40, softness = 3;
+    function atTop(){ return mobileMenu.scrollTop <= 0; }
+    function atBottom(){ return mobileMenu.scrollTop + mobileMenu.clientHeight >= mobileMenu.scrollHeight - 1; }
 
     mobileMenu.addEventListener('touchstart', (e) => {
-      if (!mobileMenu.classList.contains('active')) return;
-      if (!e.touches || !e.touches.length) return;
+      if (!mobileMenu.classList.contains('active') || !e.touches?.length) return;
       startY = e.touches[0].clientY;
-      edgePull = 0;
       mobileContent.style.transition = 'none';
     }, { passive: true });
 
     mobileMenu.addEventListener('touchmove', (e) => {
-      if (!mobileMenu.classList.contains('active')) return;
-      if (!e.touches || !e.touches.length) return;
-
-      const y = e.touches[0].clientY;
-      const delta = y - startY; // positive = finger moving down
-
-      // Top edge pull-down vibe
+      if (!mobileMenu.classList.contains('active') || !e.touches?.length) return;
+      const delta = e.touches[0].clientY - startY; // down = +
       if (atTop() && delta > 0) {
-        edgePull = delta;
-        const translate = Math.min(visualCap, edgePull / softness);
-        mobileContent.style.transform = `translateY(${translate}px)`;
-      }
-      // Bottom edge pull-up vibe
-      else if (atBottom() && delta < 0) {
-        edgePull = -delta;
-        const translate = -Math.min(visualCap, edgePull / softness);
-        mobileContent.style.transform = `translateY(${translate}px)`;
-      }
-      else {
-        edgePull = 0;
+        mobileContent.style.transform = `translateY(${Math.min(visualCap, delta/softness)}px)`;
+      } else if (atBottom() && delta < 0) {
+        mobileContent.style.transform = `translateY(${-Math.min(visualCap, -delta/softness)}px)`;
+      } else {
         mobileContent.style.transform = 'translateY(0)';
       }
     }, { passive: true });
 
     mobileMenu.addEventListener('touchend', () => {
       if (!mobileMenu.classList.contains('active')) return;
-      // Snap back softly
-      mobileContent.style.transition = 'transform 0.2s ease-out';
+      mobileContent.style.transition = 'transform .2s ease-out';
       mobileContent.style.transform = 'translateY(0)';
     });
   </script>
